@@ -13,6 +13,7 @@ import nz from "@/assets/image/cube/nz.jpg"
 import px from "@/assets/image/cube/px.jpg"
 import py from "@/assets/image/cube/py.jpg"
 import pz from "@/assets/image/cube/pz.jpg"
+import logo from "@/assets/logo.png"
 
 
 export default {
@@ -56,7 +57,19 @@ export default {
             // this.renderer.domElement.style.position = 'relative'
             // this.renderer.domElement.style.width = width + 'px'
             // this.renderer.domElement.style.height = height+ 'px'
+
+
+            let spriteMaterial = new THREE.SpriteMaterial({
+                map: new THREE.TextureLoader().load(logo),
+                color: 0xffffff,
+                fog: true
+            })
+            let sprite = new THREE.Sprite(spriteMaterial)
+            sprite.position.set(9, 9, 0)
+
+
             
+            this.scene.add(sprite)
             this.scene.add(helper)
             this.scene.add(mesh)
 
