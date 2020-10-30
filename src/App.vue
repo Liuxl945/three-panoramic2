@@ -7,13 +7,11 @@
 import * as THREE from "three"
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
 
-import nx from "@/assets/image/cube/nx.jpg"
-import ny from "@/assets/image/cube/ny.jpg"
-import nz from "@/assets/image/cube/nz.jpg"
-import px from "@/assets/image/cube/px.jpg"
-import py from "@/assets/image/cube/py.jpg"
-import pz from "@/assets/image/cube/pz.jpg"
-import logo from "@/assets/logo.png"
+import Scene from "@/assets/js/scene"
+import Camera from "@/assets/js/camera"
+import PanoramicBox from "@/assets/js/panoramic-box"
+import Sprite from "@/assets/js/sprite"
+
 
 
 export default {
@@ -23,63 +21,67 @@ export default {
     },
     methods: {
         init() {
-            const width = window.innerWidth
-            const height = window.innerHeight
+            const width = this.width = window.innerWidth
+            const height = this.height = window.innerHeight
 
-            this.scene = new THREE.Scene()
-            this.camera = new THREE.PerspectiveCamera(40, width / height, 0.1, 1000)
-            this.camera.position.z = 5
+            this.raycaster = new THREE.Raycaster()
+            this.mouse = new THREE.Vector2()
+            this.scene = new Scene()
+            this.camera = new Camera(width, height, 40)
+            
 
             this.renderer = new THREE.WebGLRenderer()
-
-            let pathArr =  [px, nx, py, ny, pz, nz ]
-
-            let materialArr = []
-            pathArr.forEach(elem => {
-                let textureLoader = new THREE.TextureLoader()
-                let texture = textureLoader.load(elem)
-                let material = new THREE.MeshBasicMaterial({
-                    map:texture,
-                    side:THREE.BackSide,
-                });
-                materialArr.push(material)
-            })
-
-            let box = new THREE.BoxGeometry(20, 20, 20)
-            let mesh = new THREE.Mesh(box, materialArr) 
-
-            let helper = new THREE.AxesHelper(100)
-
             this.renderer.setClearColor(0xb9d3ff, 1)
             this.renderer.setSize( width, height )
-            // this.renderer.setPixelRatio( window.devicePixelRatio ) //设置这个会造成卡顿
-            
-            // this.renderer.domElement.style.position = 'relative'
-            // this.renderer.domElement.style.width = width + 'px'
-            // this.renderer.domElement.style.height = height+ 'px'
+            this.renderer.setPixelRatio( window.devicePixelRatio ) //设置这个会造成卡顿
 
-
-            let spriteMaterial = new THREE.SpriteMaterial({
-                map: new THREE.TextureLoader().load(logo),
-                color: 0xffffff,
-                fog: true
+            this.panoramicBox = new PanoramicBox()
+            let helper = new THREE.AxesHelper(100)
+            this.sprite = new Sprite({
+                position: [9.5, 1, 0],
+                imageName: "logo"
             })
-            let sprite = new THREE.Sprite(spriteMaterial)
-            sprite.position.set(9, 9, 0)
+
+            this.sprite.instance.rotation.x = -Math.PI / 3
 
 
             
-            this.scene.add(sprite)
-            this.scene.add(helper)
-            this.scene.add(mesh)
+            this.scene.instance.add(this.panoramicBox.instance)
+            this.scene.instance.add(this.sprite.instance)
+            this.scene.instance.add(helper)
 
-            new OrbitControls(this.camera,this.renderer.domElement);//创建控件对象
+            new OrbitControls(this.camera.instance,this.renderer.domElement);//创建控件对象
             document.querySelector("#app").appendChild(this.renderer.domElement); //body元素中插入canvas对象
+
+            window.addEventListener( "touchstart", this.onClick, false )
         },
         animate() {
             requestAnimationFrame(this.animate)
-            this.renderer.render(this.scene,this.camera)
-        }
+            this.renderer.render(this.scene.instance,this.camera.instance)
+        },
+
+        onClick(event) {
+            event.preventDefault()
+            const width1 = event.clientX !== undefined ? event.clientX : event.touches[0].clientX
+            const height2 = event.clientY !== undefined ? event.clientY : event.touches[0].clientY
+
+            this.mouse.x = ( width1 / this.width ) * 2 - 1;
+            this.mouse.y = - ( height2 / this.height ) * 2 + 1;
+
+
+            this.raycaster.setFromCamera( this.mouse, this.camera.instance );
+            const intersects = this.raycaster.intersectObjects( this.scene.instance.children );
+            
+            if ( intersects.length > 0 ) {
+
+                const object = intersects[ 0 ].object
+                console.log(object)
+
+                if(object.name === "logo") {
+                    alert("操作")
+                }
+            }
+        },
     }
 }
 </script>
