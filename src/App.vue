@@ -41,14 +41,10 @@ export default {
                 position: [9.5, 1, 0],
                 imageName: "logo"
             })
-
-            this.sprite.instance.rotation.x = -Math.PI / 3
-
-
             
             this.scene.instance.add(this.panoramicBox.instance)
             this.scene.instance.add(this.sprite.instance)
-            this.scene.instance.add(helper)
+            // this.scene.instance.add(helper)
 
             new OrbitControls(this.camera.instance,this.renderer.domElement);//创建控件对象
             document.querySelector("#app").appendChild(this.renderer.domElement); //body元素中插入canvas对象
