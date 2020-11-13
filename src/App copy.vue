@@ -1,11 +1,3 @@
-<!--
- * @Author: your name
- * @Date: 2020-10-30 10:02:15
- * @LastEditTime: 2020-11-13 11:27:36
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: \three-panoramic2\src\App.vue
--->
 <template>
     <div id="app">
     </div>
@@ -13,7 +5,6 @@
 
 <script>
 import * as THREE from "three"
-import TWEEN from 'tween.js'
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
 
 import Scene from "@/assets/js/scene"
@@ -24,16 +15,9 @@ import Sprite from "@/assets/js/sprite"
 
 
 export default {
-    data() {
-        return {
-            time: 0
-        }
-    },
     mounted() {
         this.init()
         this.animate()
-
-        this.animateSprite()
     },
     methods: {
         init() {
@@ -54,54 +38,22 @@ export default {
             this.panoramicBox = new PanoramicBox()
             let helper = new THREE.AxesHelper(100)
             this.sprite = new Sprite({
-                position: [18, 0, -0.1],
+                position: [9.5, 1, 0],
                 imageName: "logo"
             })
             
             this.scene.instance.add(this.panoramicBox.instance)
             this.scene.instance.add(this.sprite.instance)
-            this.scene.instance.add(helper)
+            // this.scene.instance.add(helper)
 
             new OrbitControls(this.camera.instance,this.renderer.domElement);//创建控件对象
             document.querySelector("#app").appendChild(this.renderer.domElement); //body元素中插入canvas对象
 
             window.addEventListener( "touchstart", this.onClick, false )
-
         },
         animate() {
-            this.time++
             requestAnimationFrame(this.animate)
             this.renderer.render(this.scene.instance,this.camera.instance)
-            
-            TWEEN.update()
-        },
-
-        animateSprite() {
-            let that = this
-
-            this.animateSpriteFunc = new TWEEN.Tween(that.sprite.instance.position)
-            .to({
-                y: -4
-            }, 1000)
-            .easing(TWEEN.Easing.Quadratic.Out)
-            .onUpdate(function() {
-                that.sprite.instance.position.y = this.y
-                
-            }).start()
-
-            this.animateSpriteEndFunc = new TWEEN.Tween(that.sprite.instance.position)
-            .to({
-                y: 0
-            }, 1000)
-            .easing(TWEEN.Easing.Quadratic.Out)
-            .onUpdate(function() {
-                that.sprite.instance.position.y = this.y
-
-            })
-            .start()
-
-            this.animateSpriteFunc.chain(this.animateSpriteEndFunc)
-            this.animateSpriteEndFunc.chain(this.animateSpriteFunc)
         },
 
         onClick(event) {
