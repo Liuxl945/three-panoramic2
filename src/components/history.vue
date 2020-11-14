@@ -9,7 +9,7 @@
 
 
 <template>
-    <modal-common :titleImage="titleImage">
+    <modal-common :titleImage="titleImage" ref="modal">
         <div class="history">
 
             <div class="swiper-container">
@@ -62,7 +62,6 @@ export default {
             qihanImage,
             pokeImage,
             circleImage,
-
             historyData: [
                 {
                     image: dahaiImage,
@@ -158,16 +157,26 @@ export default {
             ]
         }
     },
-    mounted() {
-        this.initSwiper()
-    },
     methods: {
+        show() {
+            if(this.$refs.modal.show) {
+                return
+            }
+            this.$refs.modal.show = true
+
+            setTimeout(() => {
+                this.initSwiper()
+            })
+            
+        },
         initSwiper() {
             this.swiper = new Swiper(".swiper-container", {
                 direction: 'horizontal', // 垂直切换选项
                 loop: true, // 循环模式选项
                 autoplay: true
             })
+            
+            console.log(this.swiper)
         }
     }
 }

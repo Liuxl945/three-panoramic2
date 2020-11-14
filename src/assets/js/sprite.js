@@ -26,5 +26,6 @@ export default class Sprite {
         this.instance.scale.set(5, 4.5, 1)
         
         this.instance.name = location.imageName || "sprite"
+        this.instance.index = location.index
     }
 }

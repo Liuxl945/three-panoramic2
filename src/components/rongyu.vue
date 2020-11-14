@@ -4,13 +4,13 @@
  * @LastEditTime: 2020-11-14 13:50:51
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
- * @FilePath: \three-panoramic2\src\components\gongyi.vue
+ * @FilePath: \three-panoramic2\src\components\rongyu.vue
 -->
 
 
 <template>
     <modal-common :titleImage="titleImage" ref="modal">
-        <div class="gongyi">
+        <div class="rongyu">
             
         </div>
     </modal-common>
@@ -18,7 +18,7 @@
 
 <script>
 
-import titleImage from "@/assets/image/index2/gongyi/公益事业.png"
+import titleImage from "@/assets/image/index2/rongyu/荣誉成绩.png"
 
 import modalCommon from "./modal-common2"
 
@@ -30,6 +30,9 @@ export default {
         return {
             titleImage,
         }
+    },
+    mounted() {
+        this.show()
     },
     methods: {
         show() {

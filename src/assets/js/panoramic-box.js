@@ -13,28 +13,38 @@ import background4 from "@/assets/image/cube/4.jpg"
 import background5 from "@/assets/image/cube/5.jpg"
 import background6 from "@/assets/image/cube/6.jpg"
 
+// import { SPRITE_IAMGE_URLS } from "./constants"
+
 export default class PanoramicBox {
-    constructor(width = 20, modulus = 20) {
+    constructor(width = 20, modulus = 32) {
 
         this.width = width
         this.modulus = modulus
         this.materialArr = []
 
+        let textureLoader = new THREE.TextureLoader()
+        this.texture = textureLoader.load(background1)
+        this.texture1 = textureLoader.load(background3)
+        this.texture2 = textureLoader.load(background5)
+        this.texture3 = textureLoader.load(background4)
+        this.texture4 = textureLoader.load(background2)
+        this.texture5 = textureLoader.load(background6)
+
         this.init()
     }
 
     init() {
-        let textureLoader = new THREE.TextureLoader()
-        let texture = textureLoader.load(background1)
-        let material = new THREE.MeshBasicMaterial({
-            map: texture,
+        
+        this.material = new THREE.MeshBasicMaterial({
+            map: this.texture,
+            // side: THREE.BackSide,
             side: THREE.DoubleSide,
             clipShadows: true
         })
         
-        this.box = new THREE.SphereGeometry(this.width, this.width, this.modulus)
+        this.box = new THREE.SphereGeometry(this.width, this.modulus, this.modulus)
         this.box.scale(-1, 1, 1)
         
-        this.instance = new THREE.Mesh(this.box, material)
+        this.instance = new THREE.Mesh(this.box, this.material)
     }
 }

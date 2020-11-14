@@ -9,7 +9,7 @@
 
 
 <template>
-    <modal-common :titleImage="titleImage">
+    <modal-common :titleImage="titleImage" ref="modal">
         <div class="yewu">
             <div class="swiper-container">
                 <div class="swiper-wrapper">
@@ -66,10 +66,17 @@ export default {
             dituImage,
         }
     },
-    mounted() {
-        this.initSwiper()
-    },
     methods: {
+        show() {
+            if(this.$refs.modal.show) {
+                return
+            }
+            this.$refs.modal.show = true
+
+            setTimeout(() => {
+                this.initSwiper()
+            }, 20)
+        },
         initSwiper() {
             this.swiper = new Swiper(".swiper-container", {
                 direction: 'horizontal', // 垂直切换选项

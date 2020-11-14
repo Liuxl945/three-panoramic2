@@ -9,7 +9,9 @@
 
 <template>
     <div id="index5" class="index-common">
-        <history></history>
+        <!-- <history></history> -->
+        <!-- <rongyu></rongyu> -->
+        <kejishili></kejishili>
         <!-- <yewu></yewu> -->
         <!-- <gongyi></gongyi> -->
     </div>
@@ -19,12 +21,16 @@
 import history from "@/components/history"
 import yewu from "@/components/yewu"
 import gongyi from "@/components/gongyi"
+import rongyu from "@/components/rongyu"
+import kejishili from "@/components/kejishili"
 export default {
     name: "index5",
     components: {
         history,
         yewu,
-        gongyi
+        gongyi,
+        rongyu,
+        kejishili
     }
 }
 </script>

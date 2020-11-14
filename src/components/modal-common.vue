@@ -10,11 +10,11 @@
 
 
 <template>
-    <div class="modal-common modal">
+    <div class="modal-common modal" v-if="show">
         <!-- 发展历程 -->
         <div class="content">
 
-            <div class="close-image">
+            <div class="close-image" @click="show = false">
                 <img class="image" :src="closeImage">
             </div>
 
@@ -59,7 +59,8 @@ export default {
             headerImage,
             fotterImage,
             centerImage,
-            closeImage
+            closeImage,
+            show: false
         }
     }
 }
@@ -78,6 +79,7 @@ export default {
     }
 
     .close-image{
+        z-index: 100;
         position: absolute;
         right: rem(-46);
         top: rem(-46);
