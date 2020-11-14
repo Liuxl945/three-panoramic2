@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2020-10-30 10:02:15
+ * @LastEditTime: 2020-11-14 13:29:14
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: \three-panoramic2\src\main.js
+ */
 import Vue from 'vue'
 import App from './App.vue'
 // import router from './router'
@@ -8,7 +16,7 @@ window.THREE = THREE
 
 Vue.config.productionTip = false
 
-
+import "swiper/swiper-bundle.css"
 
 new Vue({
         // router,

@@ -57,10 +57,15 @@
                 </div>
             </div>
         </div>
+
+
+        <lottery-result :show="showLotteryResult" :index="index" @again="againLottery"></lottery-result>
     </div>
 </template>
 
 <script>
+
+import lotteryResult from "./lottery-result"
 
 import goImage from "@/assets/image/index2/lottery/组 12.png"
 import turntableImage from "@/assets/image/index2/lottery/转盘.png"
@@ -72,13 +77,16 @@ import pingbanImage from "@/assets/image/index2/lottery/平板.png"
 import arrowImage from "@/assets/image/index2/lottery/进入(1) 拷贝 6.png"
 
 import Swiper from "swiper"
-import "swiper/swiper-bundle.css"
+
 
 
 const PRIZE_LIST = 6
 const CIRCLE_ANGLE = 360
 
 export default {
+    components: {
+        lotteryResult
+    },
     data() {
         return {
             goImage,
@@ -89,30 +97,31 @@ export default {
             huafeiImage,
             pingbanImage,
             arrowImage,
+            showLotteryResult: false,
             lottery: [
                 {
-                    id: 1,
-                    name: "1等奖"
-                },
-                {
-                    id: 2,
-                    name: "2等奖"
-                },
-                {
-                    id: 3,
+                    id: 0,
                     name: "再接再厉"
                 },
                 {
+                    id: 1,
+                    name: "5元话费"
+                },
+                {
+                    id: 2,
+                    name: "爱奇艺视频会员"
+                },
+                {
+                    id: 3,
+                    name: "华为儿童画手表"
+                },
+                {
                     id: 4,
-                    name: "3等奖"
+                    name: "5元话费"
                 },
                 {
                     id: 5,
-                    name: "参与奖"
-                },
-                {
-                    id: 6,
-                    name: "5等奖"
+                    name: "Apple ipad"
                 }
             ],
             config: {
@@ -148,7 +157,15 @@ export default {
         },
 
         async go() {
+            // 防止重复点击
+            if(this.isRotating) {
+                return
+            }
+            
             this.index = Math.floor(Math.random() * 6 )
+
+            console.log(this.index)
+
             this.rotating() // 开始旋转
         },
 
@@ -167,7 +184,11 @@ export default {
         rotateOver() {
             this.isRotating = false
 
-            console.log(this.lottery[this.index].name)
+            this.showLotteryResult = true //显示对应的奖品
+        },
+
+        againLottery() {
+            this.showLotteryResult = false
         }
     },
     computed: {

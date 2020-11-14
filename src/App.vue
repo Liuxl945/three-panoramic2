@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-10-30 10:02:15
- * @LastEditTime: 2020-11-13 11:27:36
+ * @LastEditTime: 2020-11-14 11:37:03
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \three-panoramic2\src\App.vue
@@ -12,6 +12,7 @@
         <index-2 v-if="indexState === 2"></index-2>
         <index-3 v-if="indexState === 3"></index-3>
         <index-4 v-if="indexState === 4"></index-4>
+        <index-5 v-if="indexState === 5"></index-5>
     </div>
 </template>
 
@@ -20,6 +21,7 @@ import Index1 from "@/views/Index1"
 import Index2 from "@/views/Index2"
 import Index3 from "@/views/Index3"
 import Index4 from "@/views/Index4"
+import Index5 from "@/views/Index5"
 
 import { mapState } from "vuex"
 
@@ -28,7 +30,8 @@ export default {
         Index1,
         Index2,
         Index3,
-        Index4
+        Index4,
+        Index5
     },
     computed: {
         ...mapState({
