@@ -2,7 +2,7 @@
 <!--
  * @Author: 刘学良
  * @Date: 2020-10-30 10:02:15
- * @LastEditTime: 2020-11-13 11:27:36
+ * @LastEditTime: 2020-11-14 19:42:39
  * @LastEditors: Please set LastEditors
  * @Description: 场景动画
  * @FilePath: \three-panoramic2\src\App.vue
@@ -24,6 +24,7 @@ import Scene from "@/assets/js/scene"
 import Camera from "@/assets/js/camera"
 import PanoramicBox from "@/assets/js/panoramic-box"
 import Sprite from "@/assets/js/sprite"
+import { LOCATIONS } from "@/assets/js/constants"
 
 export default {
     name: "index3",
@@ -36,7 +37,7 @@ export default {
         this.init()
         this.animate()
 
-        this.animateSprite()
+        // this.animateSprite()
     },
     methods: {
         init() {
@@ -56,14 +57,25 @@ export default {
 
             this.panoramicBox = new PanoramicBox()
             let helper = new THREE.AxesHelper(100)
-            this.sprite = new Sprite({
-                position: [18, 0, -0.1],
-                imageName: "logo"
+
+
+            // 精灵模型
+            LOCATIONS.forEach(item => {
+                this.[item.name + "sprite"] = new Sprite({
+                    position: item.position,
+                    imageName: item.name,
+                    name: item.name
+                })
+
+                console.log(item.name + "sprite")
+                console.log(this[item.name + "sprite"])
+
+                this.scene.instance.add(this[item.name + "sprite"].instance)
             })
+
             
             this.scene.instance.add(this.panoramicBox.instance)
-            this.scene.instance.add(this.sprite.instance)
-            this.scene.instance.add(helper)
+            // this.scene.instance.add(helper)
 
             new OrbitControls(this.camera.instance,this.renderer.domElement);//创建控件对象
             document.querySelector("#index3").appendChild(this.renderer.domElement); //body元素中插入canvas对象
