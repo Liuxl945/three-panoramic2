@@ -8,11 +8,13 @@
 -->
 <template>
     <div id="app">
-        <index-1 v-if="indexState === 1"></index-1>
-        <index-2 v-if="indexState === 2"></index-2>
-        <index-3 v-if="indexState === 3"></index-3>
-        <index-4 v-if="indexState === 4"></index-4>
-        <index-5 v-if="indexState === 5"></index-5>
+        <index-1 v-if="indexState === 1 && !loading"></index-1>
+        <index-2 v-if="indexState === 2 && !loading"></index-2>
+        <index-3 v-if="indexState === 3 && !loading"></index-3>
+        <index-4 v-if="indexState === 4 && !loading"></index-4>
+        <index-5 v-if="indexState === 5 && !loading"></index-5>
+
+        <v-loading v-if="loading" :progress="progress" :tips="loadingTips"></v-loading>
     </div>
 </template>
 
@@ -22,8 +24,11 @@ import Index2 from "@/views/Index2"
 import Index3 from "@/views/Index3"
 import Index4 from "@/views/Index4"
 import Index5 from "@/views/Index5"
+import Loading from '@/components/loading'
 
 import { mapState } from "vuex"
+import { Loader } from 'resource-loader'
+import { IMAGE_URLS } from "@/assets/js/constants"
 
 export default {
     components: {
@@ -31,7 +36,35 @@ export default {
         Index2,
         Index3,
         Index4,
-        Index5
+        Index5,
+        "v-loading": Loading
+    },
+    data() {
+      return {
+        loadingTips: "程序加载中",
+        loading: true,
+        progress: 0
+      }
+    },
+    mounted() {
+      let loader = new Loader()
+
+      Object.keys(IMAGE_URLS).forEach(name => {
+        loader.add(name, IMAGE_URLS[name])
+      })
+
+      loader.onProgress.add(() => {
+        this.progress = Math.round(loader.progress)
+      })
+
+      loader.onComplete.add(() => {
+        setTimeout(() =>{
+          this.loading = false
+        })
+      })
+      loader.load()
+      window.loader = loader
+        
     },
     computed: {
         ...mapState({

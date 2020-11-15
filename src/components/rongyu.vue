@@ -51,8 +51,8 @@
 import titleImage from "@/assets/image/index2/rongyu/荣誉成绩.png"
 import titleImage1 from "@/assets/image/index2/rongyu/标题.png"
 import titleImage2 from "@/assets/image/index2/rongyu/标题2.png"
-import circleImage from "@/assets/image/index2/kejishili/椭圆 5.png"
-import list2Image from "@/assets/image/index2/rongyu/组 15.png"
+import circleImage from "@/assets/image/index2/kejishili/椭圆5.png"
+import list2Image from "@/assets/image/index2/rongyu/组15.png"
 
 import modalCommon from "./modal-common2"
 

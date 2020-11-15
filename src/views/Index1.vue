@@ -31,11 +31,11 @@
 
 <script>
 
-import backgroundImage from "@/assets/image/index1/色相_饱和度 1.png"
-import titleImage from "@/assets/image/index1/组 12.png"
-import btnImage from "@/assets/image/index1/组 11.png"
+import backgroundImage from "@/assets/image/index1/色相_饱和度1.png"
+import titleImage from "@/assets/image/index1/组12.png"
+import btnImage from "@/assets/image/index1/组11.png"
 import logoImage from "@/assets/image/index1/logo.png"
-import avatarImage from "@/assets/image/index1/色相_饱和度 1 拷贝.png"
+import avatarImage from "@/assets/image/index1/色相_饱和度1拷贝.png"
 
 export default {
     name: "index2",

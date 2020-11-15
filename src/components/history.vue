@@ -43,10 +43,10 @@
 
 <script>
 import titleImage from "@/assets/image/index2/history/发展历程.png"
-import dahaiImage from "@/assets/image/index2/history/图层 505.png"
-import qihanImage from "@/assets/image/index2/history/图层 506.png"
-import pokeImage from "@/assets/image/index2/history/图层 507.png"
-import circleImage from "@/assets/image/index2/history/椭圆 4.png"
+import dahaiImage from "@/assets/image/index2/history/图层505.png"
+import qihanImage from "@/assets/image/index2/history/图层506.png"
+import pokeImage from "@/assets/image/index2/history/图层507.png"
+import circleImage from "@/assets/image/index2/history/椭圆4.png"
 
 import modalCommon from "./modal-common"
 import Swiper from "swiper"
@@ -176,7 +176,6 @@ export default {
                 autoplay: true
             })
             
-            console.log(this.swiper)
         }
     }
 }

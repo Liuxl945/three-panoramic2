@@ -15,8 +15,8 @@
 <script>
 
 import backgroundImage from "@/assets/image/index2/背景.png"
-import titleImage from "@/assets/image/index2/组 7.png"
-import btnImage from "@/assets/image/index2/组 5.png"
+import titleImage from "@/assets/image/index2/组7.png"
+import btnImage from "@/assets/image/index2/组5.png"
 import logoImage from "@/assets/image/index1/logo.png"
 
 export default {

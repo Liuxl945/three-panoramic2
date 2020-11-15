@@ -32,7 +32,7 @@ import Camera from "@/assets/js/camera"
 import PanoramicBox from "@/assets/js/panoramic-box"
 import Sprite from "@/assets/js/sprite"
 import { LOCATIONS, SPRITE_CHILDREN } from "@/assets/js/constants"
-import { deepClone } from "@/assets/js/utils"
+// import { deepClone } from "@/assets/js/utils"
 
 let spriteArr = LOCATIONS.map(item => {
     return item.name
@@ -184,7 +184,7 @@ export default {
             const intersects = this.raycaster.intersectObjects( spriteGroup[0] ? spriteGroup[0].children : [])
             
 
-            console.log(this.controls)
+            // console.log(this.controls)
 
 
             if ( intersects.length > 0 ) {
@@ -246,7 +246,7 @@ export default {
 
 
             // 添加sprite元素  // 判断如果有了实例 不要在new sprite了
-            let arr = SPRITE_CHILDREN[index]
+            // let arr = SPRITE_CHILDREN[index]
 
             this[`sprite${index}`] = new THREE.Group()
 

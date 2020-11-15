@@ -102,10 +102,10 @@ import listImage1 from "@/assets/image/index2/kejishili/跨地域多活架构.pn
 import listImage2 from "@/assets/image/index2/kejishili/私有云.png"
 import listImage3 from "@/assets/image/index2/kejishili/数字化运营.png"
 
-import list2Image1 from "@/assets/image/index2/kejishili/曲线 1 拷贝.png"
+import list2Image1 from "@/assets/image/index2/kejishili/曲线1拷贝.png"
 import list2Image2 from "@/assets/image/index2/kejishili/大数据和AI引擎.png"
-import list3Image1 from "@/assets/image/index2/kejishili/曲线 1.png"
-import circleImage from "@/assets/image/index2/kejishili/椭圆 5.png"
+import list3Image1 from "@/assets/image/index2/kejishili/曲线1.png"
+import circleImage from "@/assets/image/index2/kejishili/椭圆5.png"
 
 import modalCommon from "./modal-common"
 import Swiper from "swiper"

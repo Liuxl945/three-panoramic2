@@ -71,7 +71,7 @@ export default {
             if ( intersects.length > 0 ) {
 
                 const object = intersects[ 0 ].object
-                console.log(object)
+                // console.log(object)
 
                 if(object.name === "logo") {
                     alert("操作")

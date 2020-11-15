@@ -1,5 +1,22 @@
+
+const Timestamp = new Date().getTime()
 module.exports = {
+    configureWebpack:{
+        module:{
+            rules:[
+            ]
+        },
+        externals: {
+            // "vue":"Vue"
+        },
+        output: {
+            filename: `js/[name].${Timestamp}.js`,
+            chunkFilename: `js/[name].${Timestamp}.js`
+        }
+    },
     lintOnSave: false,
+    publicPath: "./",
+    productionSourceMap: process.env.NODE_ENV === 'production' ? false : true,
     chainWebpack: config => {
         config
         .module

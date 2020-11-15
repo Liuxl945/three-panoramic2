@@ -43,8 +43,8 @@ import yihedaiImage from "@/assets/image/index2/yewu/合亿贷.png"
 import manyicunImage from "@/assets/image/index2/yewu/满亿存.png"
 import yidaiImage from "@/assets/image/index2/yewu/亿贷.png"
 import yinondaiImage from "@/assets/image/index2/yewu/亿农贷.png"
-import qudaoImage from "@/assets/image/index2/yewu/组 15.png"
-import dituImage from "@/assets/image/index2/yewu/组 1.png"
+import qudaoImage from "@/assets/image/index2/yewu/组15.png"
+import dituImage from "@/assets/image/index2/yewu/组1.png"
 
 
 import modalCommon from "./modal-common2"

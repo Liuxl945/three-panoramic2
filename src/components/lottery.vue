@@ -67,7 +67,7 @@
 
 import lotteryResult from "./lottery-result"
 
-import goImage from "@/assets/image/index2/lottery/组 12.png"
+import goImage from "@/assets/image/index2/lottery/组12.png"
 import turntableImage from "@/assets/image/index2/lottery/转盘.png"
 import titleImage from "@/assets/image/index2/lottery/·你可能抽中的有·.png"
 import aiqiyiImage from "@/assets/image/index2/lottery/爱奇艺.png"
@@ -164,7 +164,7 @@ export default {
             
             this.index = Math.floor(Math.random() * 6 )
 
-            console.log(this.index)
+            // console.log(this.index)
 
             this.rotating() // 开始旋转
         },
