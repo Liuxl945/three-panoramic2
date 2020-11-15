@@ -79,7 +79,8 @@ export default {
             this.renderer = new THREE.WebGLRenderer()
             this.renderer.setClearColor(0xb9d3ff, 1)
             this.renderer.setSize( width, height )
-            this.renderer.setPixelRatio( window.devicePixelRatio ) //设置这个会造成卡顿
+            // this.renderer.setPixelRatio( window.devicePixelRatio ) //设置这个会造成卡顿
+            this.renderer.setPixelRatio( 2 ) //设置这个会造成卡顿
 
             this.panoramicBox = new PanoramicBox()
             let helper = new THREE.AxesHelper(100)
