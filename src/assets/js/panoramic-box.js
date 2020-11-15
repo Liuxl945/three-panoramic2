@@ -38,7 +38,7 @@ export default class PanoramicBox {
         this.material = new THREE.MeshBasicMaterial({
             map: this.texture,
             // side: THREE.BackSide,
-            side: THREE.DoubleSide,
+            side: THREE.FrontSide,
             clipShadows: true
         })
         

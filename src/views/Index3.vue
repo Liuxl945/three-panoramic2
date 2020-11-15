@@ -21,6 +21,8 @@
         <gongyi ref="gongyi"></gongyi>
         <kejishili ref="kejishili"></kejishili>
         <rongyu ref="rongyu"></rongyu>
+
+        <canvas-loading v-if="loading"></canvas-loading>
     </div>
 </template>
 
@@ -50,6 +52,7 @@ import yewu from "@/components/yewu"
 import gongyi from "@/components/gongyi"
 import kejishili from "@/components/kejishili"
 import rongyu from "@/components/rongyu"
+import canvasLoading from "@/components/canvas-loading"
 
 export default {
     components: {
@@ -57,14 +60,16 @@ export default {
         yewu,
         gongyi,
         kejishili,
-        rongyu
+        rongyu,
+        canvasLoading
     },
     name: "index3",
     data() {
         return {
             vrIndex: null,
             activeIndex: [],
-            lotterImage
+            lotterImage,
+            loading: false
         }
     },
     mounted() {
@@ -114,7 +119,7 @@ export default {
 
             this.scene.instance.add(spriteGroup)
             this.scene.instance.add(this.panoramicBox.instance)
-            // this.scene.instance.add(helper)
+            this.scene.instance.add(helper)
 
             this.controls = new OrbitControls(this.camera.instance,this.renderer.domElement)//创建控件对象
 
@@ -132,11 +137,70 @@ export default {
         },
         animate() {
             requestAnimationFrame(this.animate)
-
             this.renderer.render(this.scene.instance,this.camera.instance)
             this.controls.update()
             
             TWEEN.update()
+
+            const number = 5
+
+            if(this.camera.instance.position.z < -25 + number && this.camera.instance.position.z > -25 - number   ) {
+                this.spriteGroup.remove(this["gongyi"+ "sprite"].instance) 
+                // return
+            }else if(this.spriteGroup.children.length < 5){
+                this.spriteGroup.add(this["gongyi"+ "sprite"].instance) 
+                // return
+            }
+
+            if(this.camera.instance.position.z > 25 - number && this.camera.instance.position.z < 25 + number   ) {
+                this.spriteGroup.remove(this["licheng"+ "sprite"].instance) 
+                // return
+            }else if(this.spriteGroup.children.length < 5){
+                this.spriteGroup.add(this["licheng"+ "sprite"].instance) 
+                // return
+            }
+
+
+            if(this.camera.instance.position.x > 25 - number && this.camera.instance.position.x < 25 + number ) {
+                this.spriteGroup.remove(this["yewu"+ "sprite"].instance) 
+                // return
+            }else if(this.spriteGroup.children.length < 5){
+                this.spriteGroup.add(this["yewu"+ "sprite"].instance) 
+                // return
+            }
+
+            if(this.camera.instance.position.z > -18 - number && this.camera.instance.position.z < -18 + number  
+                && this.camera.instance.position.x < 18 + number && this.camera.instance.position.x > 18 - number
+            ) {
+                this.spriteGroup.remove(this["keji"+ "sprite"].instance) 
+                // return
+            }else if(this.spriteGroup.children.length < 5){
+                this.spriteGroup.add(this["keji"+ "sprite"].instance) 
+                // return
+            }
+
+            if(this.camera.instance.position.z < 18 + number && this.camera.instance.position.z > 18 - number  
+                && this.camera.instance.position.x < 18 + number && this.camera.instance.position.x > 18 - number
+            ) {
+                this.spriteGroup.remove(this["rongyu"+ "sprite"].instance) 
+                // return
+            }else if(this.spriteGroup.children.length < 5){
+                this.spriteGroup.add(this["rongyu"+ "sprite"].instance) 
+                // return
+            }
+
+
+            if(this.vrIndex) {
+                if(this.camera.instance.position.x < -25 + number && this.camera.instance.position.x > -25 - number) {
+                    this.scene.instance.remove(this[`sprite${this.vrIndex}`])
+                    this.scene.instance.remove(this[`sprite${this.vrIndex}`])
+                }else{
+                    this.scene.instance.add(this[`sprite${this.vrIndex}`])
+                    this.scene.instance.add(this[`sprite${this.vrIndex}`])
+                }
+            }
+
+            
         },
 
         // 精灵模型上下动画
@@ -186,6 +250,7 @@ export default {
 
             this.raycaster.setFromCamera( this.mouse, this.camera.instance )
 
+
             let spriteGroup = this.scene.instance.children.filter(item => {
                 return item.type === "Group"
             })
@@ -193,7 +258,6 @@ export default {
             const intersects = this.raycaster.intersectObjects( spriteGroup[0] ? spriteGroup[0].children : [])
             
 
-            // console.log(this.controls)
 
 
             if ( intersects.length > 0 ) {
@@ -201,7 +265,8 @@ export default {
                 const object = intersects[ 0 ].object
 
                 if(this.vrIndex){
-
+                    
+                    
                     // 如果是切换了场景  到5个场景中的其中一个场景去了
                     if(this.vrIndex === 5) {
                         this.$refs.history.show()
@@ -211,8 +276,6 @@ export default {
                         this.$refs.yewu.show()
                     }else if(this.vrIndex === 1){
                         this.$refs.gongyi.show()
-
-                        
                     }
                     else if(this.vrIndex === 4){
                         this.$refs.rongyu.show()
@@ -222,25 +285,34 @@ export default {
 
                 }else if(spriteArr.includes(object.name)) {
                     
-                    let that = this
-                    new TWEEN.Tween(that.camera.instance)
-                    .to({
-                        fov: 10
-                    }, 1000)
-                    .easing(TWEEN.Easing.Quadratic.Out)
-                    .onUpdate(function() {
-                        that.camera.instance.fov = this.fov
-                        that.camera.instance.updateProjectionMatrix()
-                        that.controls.autoRotate = false
-                    })
-                    .onComplete(() => {
-                        this.changeVr(object.index)
-                        that.camera.instance.fov = 40
+                    // let that = this
+                    // new TWEEN.Tween(that.camera.instance)
+                    // .to({
+                    //     fov: 10
+                    // }, 1000)
+                    // .easing(TWEEN.Easing.Quadratic.Out)
+                    // .onUpdate(function() {
+                    //     that.camera.instance.fov = this.fov
+                    //     that.camera.instance.updateProjectionMatrix()
+                    //     that.controls.autoRotate = false
+                    // })
+                    // .onComplete(() => {
+                    //     this.changeVr(object.index)
+                    //     that.camera.instance.fov = 40
 
-                        // that.controls.autoRotate = true
-                        that.camera.instance.updateProjectionMatrix()
-                    })
-                    .start()
+                    //     // that.controls.autoRotate = true
+                    //     that.camera.instance.updateProjectionMatrix()
+                    // })
+                    // .start()
+                    this.loading = true
+                    this.controls.autoRotate = false
+
+                    this.changeVr(object.index)
+                    setTimeout(() => {
+                        this.loading = false    
+                        this.controls.autoRotate = true
+                    }, 500)
+                    
                 }
             }
         },
@@ -249,29 +321,33 @@ export default {
             this.vrIndex = index
             this.scene.instance.remove(this.spriteGroup)
             this.panoramicBox.instance.material.map = this.panoramicBox["texture" + index]
-            
 
             let that = this
+            this.oldPosition = this.camera.instance.position
+            // this.oldPosition = {
+            //     x: this.camera.instance.position.x,
+            //     y: this.camera.instance.position.y,
+            //     z: this.camera.instance.position.z
+            // }
 
-            this.oldPosition = {
-                x: this.camera.instance.position.x,
-                y: this.camera.instance.position.y,
-                z: this.camera.instance.position.z
-            }
+            
+            // new TWEEN.Tween(this.camera.instance.position)
+            // .to({
+            //     x: 17.9,
+            //     y: -3,
+            //     z: 0,
+            // }, 1500)
+            // .easing(TWEEN.Easing.Quadratic.Out)
+            // .onUpdate(function() {
+            //     that.camera.instance.position.z = this.z
+            //     that.camera.instance.position.x = this.x
+            //     that.camera.instance.position.y = this.y
+            // })
+            // .start()
 
-            new TWEEN.Tween(this.camera.instance.position)
-            .to({
-                x: 16.9,
-                y: -3,
-                z: 0,
-            }, 1500)
-            .easing(TWEEN.Easing.Quadratic.Out)
-            .onUpdate(function() {
-                that.camera.instance.position.z = this.z
-                that.camera.instance.position.x = this.x
-                that.camera.instance.position.y = this.y
-            })
-            .start()
+            that.camera.instance.position.z = 0
+            that.camera.instance.position.x = 25
+            that.camera.instance.position.y = -3
 
 
             // 添加sprite元素  // 判断如果有了实例 不要在new sprite了
@@ -305,21 +381,23 @@ export default {
             this.scene.instance.add(this.spriteGroup)
 
             let that = this
+            // new TWEEN.Tween(this.camera.instance.position)
+            // .to(this.oldPosition, 1500)
+            // .easing(TWEEN.Easing.Quadratic.Out)
+            // .onUpdate(function() {
+            //     that.camera.instance.position.z = this.z
+            //     that.camera.instance.position.x = this.x
+            //     that.camera.instance.position.y = this.y
+            // })
+            // .onComplete(() => {
+            //     this.controls.autoRotate = true
+            // })
+            // .start()
 
-            new TWEEN.Tween(this.camera.instance.position)
-            .to(this.oldPosition, 1500)
-            .easing(TWEEN.Easing.Quadratic.Out)
-            .onUpdate(function() {
-                that.camera.instance.position.z = this.z
-                that.camera.instance.position.x = this.x
-                that.camera.instance.position.y = this.y
-            })
-            .onComplete(() => {
+            that.camera.instance.position.x = this.oldPosition.x
+            that.camera.instance.position.y = this.oldPosition.y
+            that.camera.instance.position.z = this.oldPosition.z
 
-                this.controls.autoRotate = true
-
-            })
-            .start()
 
             this.panoramicBox.instance.material.map = this.panoramicBox["texture"]
         },
