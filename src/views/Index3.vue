@@ -11,7 +11,10 @@
 <template>
     <div id="index3" class="index-common">
         
-        <div class="back" @touchstart.stop @click.stop="backHome" v-if="vrIndex"></div>
+        <div class="back" @touchstart.stop @click.stop="backHome" v-if="vrIndex">返回主页</div>
+        <div class="lotery" @touchstart.stop @click.stop="lotery" v-if="activeIndex.length === 5">
+            <img class="image" :src="lotterImage" alt="抽检">
+        </div>
 
         <history ref="history"></history>
         <yewu ref="yewu"></yewu>
@@ -26,6 +29,8 @@
 import * as THREE from "three"
 import TWEEN from "tween.js"
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
+
+import lotterImage from "@/assets/image/index2/选我.png"
 
 import Scene from "@/assets/js/scene"
 import Camera from "@/assets/js/camera"
@@ -56,7 +61,9 @@ export default {
     name: "index3",
     data() {
         return {
-            vrIndex: null
+            vrIndex: null,
+            activeIndex: [],
+            lotterImage
         }
     },
     mounted() {
@@ -106,12 +113,12 @@ export default {
 
             this.scene.instance.add(spriteGroup)
             this.scene.instance.add(this.panoramicBox.instance)
-            this.scene.instance.add(helper)
+            // this.scene.instance.add(helper)
 
             this.controls = new OrbitControls(this.camera.instance,this.renderer.domElement)//创建控件对象
 
-            // this.controls.enabled = true
-            // this.controls.enableZoom = false
+            this.controls.enabled = true
+            this.controls.enableZoom = false
             this.controls.autoRotate = true
             this.controls.autoRotateSpeed = 0.5
 
@@ -192,10 +199,9 @@ export default {
 
                 const object = intersects[ 0 ].object
 
-                
-
                 if(this.vrIndex){
                     // 如果是切换了场景  到5个场景中的其中一个场景去了
+                    
 
                     if(this.vrIndex === 5) {
                         this.$refs.history.show()
@@ -209,8 +215,7 @@ export default {
                     }else if(this.vrIndex === 2){
                         this.$refs.kejishili.show()
                     }
-                    
-                    
+
                 }else if(spriteArr.includes(object.name)) {
                     
                     let that = this
@@ -264,6 +269,12 @@ export default {
             })
 
             this.scene.instance.add(this[`sprite${index}`])
+
+
+            // 统计进入的场景
+            if(!this.activeIndex.includes(this.vrIndex)) {
+                this.activeIndex.push(this.vrIndex)
+            }
         },
         backHome() {
             this.scene.instance.remove(this[`sprite${this.vrIndex}`])
@@ -271,6 +282,10 @@ export default {
             this.scene.instance.add(this.spriteGroup)
 
             this.panoramicBox.instance.material.map = this.panoramicBox["texture"]
+        },
+
+        lotery() {
+            this.$store.commit("SET_INDEX", 4)
         }
     }
 }
@@ -278,13 +293,33 @@ export default {
 
 
 <style lang="scss" scoped>
+
+@function rem($n){
+  @return $n/(200)+rem;
+}
+
 .back{
-    width: 40px;
-    height: 40px;
+    width: rem(100);
+    height: rem(100);
     background: #ffffff;
     position: fixed;
-    left: 10px;
-    top: 10px;
+    left: rem(40);
+    top: rem(40);
+    font-size: rem(36);
+    text-align: center;
+    padding: rem(10);
     z-index: 10;
+}
+
+.lotery{
+    width: rem(188);
+    height: rem(193);
+    position: fixed;
+    bottom: rem(20);
+    z-index: 11;
+    right: rem(20);
+    .image{
+        width: 100%;
+    }
 }
 </style>
