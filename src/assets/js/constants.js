@@ -68,8 +68,11 @@ import btnImagez5 from "@/assets/image/index2/组5.png"
 
 
 
-import vr from "@/assets/VR展厅11111.png"
-import vr2 from "@/assets/荣誉成绩.png"
+import vr from "@/assets/公益事业.jpg"
+import vr2 from "@/assets/科技实力.png"
+import vr3 from "@/assets/产品业务.png"
+import vr4 from "@/assets/荣誉成绩.png"
+import vr5 from "@/assets/发展历程.png"
 
 export const IMAGE_URLS = {
     yewu,
@@ -125,7 +128,14 @@ export const IMAGE_URLS = {
     avatarImage,
     backgroundImageindex2,
     titleImageindex2,
-    btnImagez5
+    btnImagez5,
+
+
+    vr,
+    vr2,
+    vr3,
+    vr4,
+    vr5,
 }
 
 export const SPRITE_IAMGE_URLS= {
@@ -135,7 +145,10 @@ export const SPRITE_IAMGE_URLS= {
     keji,
     rongyu,
     vr,
-    vr2
+    vr2,
+    vr3,
+    vr4,
+    vr5,
 }
 
 export const SPRITE_CHILDREN = [
@@ -143,61 +156,61 @@ export const SPRITE_CHILDREN = [
         {
             index: 1,
             name: "vr",
-            position: [-17, 3, 3.5]
+            position: [-17, 3, 0]
         },
-        {
-            index: 2,
-            name: "vr2",
-            position: [-17, 3, -3.5]
-        },
+        // {
+        //     index: 2,
+        //     name: "vr2",
+        //     position: [-17, 3, -3.5]
+        // },
     ],
     [
         {
             index: 1,
-            name: "vr",
-            position: [-17, 3, 3.5]
-        },
-        {
-            index: 2,
             name: "vr2",
-            position: [-17, 3, -3.5]
+            position: [-17, 3, 0]
         },
+        // {
+        //     index: 2,
+        //     name: "vr2",
+        //     position: [-17, 3, -3.5]
+        // },
     ],
     [
         {
             index: 1,
-            name: "vr",
-            position: [-17, 3, 3.5]
+            name: "vr3",
+            position: [-17, 3, 0]
         },
-        {
-            index: 2,
-            name: "vr2",
-            position: [-17, 3, -3.5]
-        },
+        // {
+        //     index: 2,
+        //     name: "vr2",
+        //     position: [-17, 3, -3.5]
+        // },
     ],
     [
         {
             index: 1,
-            name: "vr",
-            position: [-17, 3, 3.5]
+            name: "vr4",
+            position: [-17, 3, 0]
         },
-        {
-            index: 2,
-            name: "vr2",
-            position: [-17, 3, -3.5]
-        },
+        // {
+        //     index: 2,
+        //     name: "vr2",
+        //     position: [-17, 3, -3.5]
+        // },
     ],
     [
         {
             index: 1,
-            name: "vr",
-            position: [-17, 3, 3.5]
+            name: "vr5",
+            position: [-17, 3, 0]
         },
-        {
-            index: 2,
-            name: "vr2",
-            position: [-17, 3, -3.5]
-        },
+        // {
+        //     index: 2,
+        //     name: "vr2",
+        //     position: [-17, 3, -3.5]
+        // },
     ]
 ]
 
