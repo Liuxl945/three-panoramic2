@@ -143,60 +143,60 @@ export const SPRITE_CHILDREN = [
         {
             index: 1,
             name: "vr",
-            position: [0, 0, 16]
+            position: [-17, 3, 3.5]
         },
         {
             index: 2,
             name: "vr2",
-            position: [0, 0, -16]
+            position: [-17, 3, -3.5]
         },
     ],
     [
         {
             index: 1,
             name: "vr",
-            position: [0, 0, 16]
+            position: [-17, 3, 3.5]
         },
         {
             index: 2,
             name: "vr2",
-            position: [0, 0, -16]
+            position: [-17, 3, -3.5]
         },
     ],
     [
         {
             index: 1,
             name: "vr",
-            position: [0, 0, 16]
+            position: [-17, 3, 3.5]
         },
         {
             index: 2,
             name: "vr2",
-            position: [0, 0, -16]
+            position: [-17, 3, -3.5]
         },
     ],
     [
         {
             index: 1,
             name: "vr",
-            position: [0, 0, 16]
+            position: [-17, 3, 3.5]
         },
         {
             index: 2,
             name: "vr2",
-            position: [0, 0, -16]
+            position: [-17, 3, -3.5]
         },
     ],
     [
         {
             index: 1,
             name: "vr",
-            position: [0, 0, 16]
+            position: [-17, 3, 3.5]
         },
         {
             index: 2,
             name: "vr2",
-            position: [0, 0, -16]
+            position: [-17, 3, -3.5]
         },
     ]
 ]

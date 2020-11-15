@@ -35,6 +35,7 @@ import lotterImage from "@/assets/image/index2/选我.png"
 import Scene from "@/assets/js/scene"
 import Camera from "@/assets/js/camera"
 import PanoramicBox from "@/assets/js/panoramic-box"
+import PanoramicBox1 from "@/assets/js/panoramic-box1"
 import Sprite from "@/assets/js/sprite"
 import { LOCATIONS, SPRITE_CHILDREN } from "@/assets/js/constants"
 // import { deepClone } from "@/assets/js/utils"
@@ -200,15 +201,18 @@ export default {
                 const object = intersects[ 0 ].object
 
                 if(this.vrIndex){
-                    // 如果是切换了场景  到5个场景中的其中一个场景去了
-                    
 
+                    // 如果是切换了场景  到5个场景中的其中一个场景去了
                     if(this.vrIndex === 5) {
                         this.$refs.history.show()
+
+                        
                     }else if(this.vrIndex === 3){
                         this.$refs.yewu.show()
                     }else if(this.vrIndex === 1){
                         this.$refs.gongyi.show()
+
+                        
                     }
                     else if(this.vrIndex === 4){
                         this.$refs.rongyu.show()
@@ -233,15 +237,11 @@ export default {
                         this.changeVr(object.index)
                         that.camera.instance.fov = 40
 
-                        that.controls.autoRotate = true
+                        // that.controls.autoRotate = true
                         that.camera.instance.updateProjectionMatrix()
                     })
                     .start()
-
-
-                    
                 }
-                
             }
         },
         // 切换AI场景
@@ -249,6 +249,29 @@ export default {
             this.vrIndex = index
             this.scene.instance.remove(this.spriteGroup)
             this.panoramicBox.instance.material.map = this.panoramicBox["texture" + index]
+            
+
+            let that = this
+
+            this.oldPosition = {
+                x: this.camera.instance.position.x,
+                y: this.camera.instance.position.y,
+                z: this.camera.instance.position.z
+            }
+
+            new TWEEN.Tween(this.camera.instance.position)
+            .to({
+                x: 16.9,
+                y: -3,
+                z: 0,
+            }, 1500)
+            .easing(TWEEN.Easing.Quadratic.Out)
+            .onUpdate(function() {
+                that.camera.instance.position.z = this.z
+                that.camera.instance.position.x = this.x
+                that.camera.instance.position.y = this.y
+            })
+            .start()
 
 
             // 添加sprite元素  // 判断如果有了实例 不要在new sprite了
@@ -280,6 +303,23 @@ export default {
             this.scene.instance.remove(this[`sprite${this.vrIndex}`])
             this.vrIndex = null
             this.scene.instance.add(this.spriteGroup)
+
+            let that = this
+
+            new TWEEN.Tween(this.camera.instance.position)
+            .to(this.oldPosition, 1500)
+            .easing(TWEEN.Easing.Quadratic.Out)
+            .onUpdate(function() {
+                that.camera.instance.position.z = this.z
+                that.camera.instance.position.x = this.x
+                that.camera.instance.position.y = this.y
+            })
+            .onComplete(() => {
+
+                this.controls.autoRotate = true
+
+            })
+            .start()
 
             this.panoramicBox.instance.material.map = this.panoramicBox["texture"]
         },

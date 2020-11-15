@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <link href="loding.css" rel="stylesheet">
+
     <title><%= htmlWebpackPlugin.options.title %></title>
 
     <script>
@@ -26,6 +28,8 @@
           doc.addEventListener("DOMContentLoaded", recalc, false);
       })(document, window);
     </script>
+
+  <script src="<%= BASE_URL %>vue.min.js"></script>
   </head>
   <body>
     <noscript>
@@ -34,6 +38,29 @@
     <div id="app"></div>
     <!-- built files will be auto injected -->
 
-    <!-- <script src="<%= BASE_URL %>vue.min.js"></script> -->
+    <div id="apploading">
+      <div class="loading3">
+          <div class="circle circle1">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+          </div>
+          <div class="circle circle2">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+          </div>
+          <div class="circle circle3">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+          </div>
+      </div>
+
+      <p class="tips">程序加载中</p>
+    </div>
   </body>
 </html>

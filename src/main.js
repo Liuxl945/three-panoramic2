@@ -18,6 +18,10 @@ Vue.config.productionTip = false
 
 import "swiper/swiper-bundle.css"
 
+// import vConsole from "vconsole"
+
+// new vConsole()
+
 new Vue({
         // router,
         store,

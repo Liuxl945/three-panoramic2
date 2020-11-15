@@ -15,6 +15,7 @@
         <index-5 v-if="indexState === 5 && !loading"></index-5>
 
         <v-loading v-if="loading" :progress="progress" :tips="loadingTips"></v-loading>
+
     </div>
 </template>
 
@@ -60,7 +61,10 @@ export default {
       loader.onComplete.add(() => {
         setTimeout(() =>{
           this.loading = false
-        })
+
+          let loading = document.querySelector("#apploading")
+          loading.remove()
+        },20)
       })
       loader.load()
       window.loader = loader
@@ -73,6 +77,9 @@ export default {
     }
 }
 </script>
+
+
+
 
 <style lang="scss">
 
