@@ -145,9 +145,7 @@ export default {
             ]
         }
     },
-    mounted() {
-        this.show()
-    },
+    
     methods: {
         show() {
             if(this.$refs.modal.show) {

@@ -10,11 +10,14 @@
 
 <template>
     <div id="index3" class="index-common">
-        <div class="back" @click="backHome" v-if="vrIndex"></div>
+        
+        <div class="back" @touchstart.stop @click.stop="backHome" v-if="vrIndex"></div>
 
         <history ref="history"></history>
         <yewu ref="yewu"></yewu>
         <gongyi ref="gongyi"></gongyi>
+        <kejishili ref="kejishili"></kejishili>
+        <rongyu ref="rongyu"></rongyu>
     </div>
 </template>
 
@@ -39,12 +42,16 @@ let spriteArr = LOCATIONS.map(item => {
 import history from "@/components/history"
 import yewu from "@/components/yewu"
 import gongyi from "@/components/gongyi"
+import kejishili from "@/components/kejishili"
+import rongyu from "@/components/rongyu"
 
 export default {
     components: {
         history,
         yewu,
-        gongyi
+        gongyi,
+        kejishili,
+        rongyu
     },
     name: "index3",
     data() {
@@ -98,9 +105,18 @@ export default {
 
             this.scene.instance.add(spriteGroup)
             this.scene.instance.add(this.panoramicBox.instance)
-            // this.scene.instance.add(helper)
+            this.scene.instance.add(helper)
 
-            new OrbitControls(this.camera.instance,this.renderer.domElement)//创建控件对象
+            this.controls = new OrbitControls(this.camera.instance,this.renderer.domElement)//创建控件对象
+
+            // this.controls.enabled = true
+            // this.controls.enableZoom = false
+            this.controls.autoRotate = true
+            this.controls.autoRotateSpeed = 0.5
+
+            
+            // this.controls.enablePan = false
+
             document.querySelector("#index3").appendChild(this.renderer.domElement) //body元素中插入canvas对象
 
             window.addEventListener( "touchstart", this.onClick, false )
@@ -109,6 +125,7 @@ export default {
             requestAnimationFrame(this.animate)
 
             this.renderer.render(this.scene.instance,this.camera.instance)
+            this.controls.update()
             
             TWEEN.update()
         },
@@ -166,9 +183,15 @@ export default {
             
             const intersects = this.raycaster.intersectObjects( spriteGroup[0] ? spriteGroup[0].children : [])
             
+
+            console.log(this.controls)
+
+
             if ( intersects.length > 0 ) {
 
                 const object = intersects[ 0 ].object
+
+                
 
                 if(this.vrIndex){
                     // 如果是切换了场景  到5个场景中的其中一个场景去了
@@ -180,15 +203,37 @@ export default {
                     }else if(this.vrIndex === 1){
                         this.$refs.gongyi.show()
                     }
-                    // else if(this.vrIndex === 4){
-                    //     this.$refs.yewu.show()
-                    // }else if(this.vrIndex === 2){
-                    //     this.$refs.yewu.show()
-                    // }
+                    else if(this.vrIndex === 4){
+                        this.$refs.rongyu.show()
+                    }else if(this.vrIndex === 2){
+                        this.$refs.kejishili.show()
+                    }
                     
                     
                 }else if(spriteArr.includes(object.name)) {
-                    this.changeVr(object.index)
+                    
+                    let that = this
+                    new TWEEN.Tween(that.camera.instance)
+                    .to({
+                        fov: 10
+                    }, 1000)
+                    .easing(TWEEN.Easing.Quadratic.Out)
+                    .onUpdate(function() {
+                        that.camera.instance.fov = this.fov
+                        that.camera.instance.updateProjectionMatrix()
+                        that.controls.autoRotate = false
+                    })
+                    .onComplete(() => {
+                        this.changeVr(object.index)
+                        that.camera.instance.fov = 40
+
+                        that.controls.autoRotate = true
+                        that.camera.instance.updateProjectionMatrix()
+                    })
+                    .start()
+
+
+                    
                 }
                 
             }
@@ -236,7 +281,7 @@ export default {
     width: 40px;
     height: 40px;
     background: #ffffff;
-    position: absolute;
+    position: fixed;
     left: 10px;
     top: 10px;
     z-index: 10;

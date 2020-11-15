@@ -10,8 +10,8 @@
 <template>
     <div id="index5" class="index-common">
         <!-- <history></history> -->
-        <!-- <rongyu></rongyu> -->
-        <kejishili></kejishili>
+        <rongyu></rongyu>
+        <!-- <kejishili></kejishili> -->
         <!-- <yewu></yewu> -->
         <!-- <gongyi></gongyi> -->
     </div>

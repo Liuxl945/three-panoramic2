@@ -73,6 +73,7 @@ export default {
 }
 
 .modal-common{
+    padding-top: 2vh;
     .content{
         width: rem(633);
         position: relative;

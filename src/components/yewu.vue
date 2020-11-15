@@ -96,7 +96,7 @@ export default {
 }
 
 .yewu{
-    max-height: 65vh;
+    max-height: 70vh;
     overflow-y: scroll;
     padding: 0 rem(20);
     .swiper-slide{
