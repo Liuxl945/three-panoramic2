@@ -108,7 +108,7 @@ export default {
 .btn{
     width: rem(750);
     height: rem(344);
-    bottom: rem(-25);
+    bottom: rem(10);
 }
 .btn,
 .logo,

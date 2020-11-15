@@ -89,11 +89,12 @@ export default {
             this.camera = new Camera(width, height, 40)
             
 
-            this.renderer = new THREE.WebGLRenderer()
+            this.renderer = new THREE.WebGLRenderer({
+                antialias: true
+            })
             this.renderer.setClearColor(0xb9d3ff, 1)
             this.renderer.setSize( width, height )
-            // this.renderer.setPixelRatio( window.devicePixelRatio ) //设置这个会造成卡顿
-            this.renderer.setPixelRatio( 2 ) //设置这个会造成卡顿
+            this.renderer.setPixelRatio( window.devicePixelRatio ) //设置这个会造成卡顿
 
             this.panoramicBox = new PanoramicBox()
             let helper = new THREE.AxesHelper(100)
@@ -119,14 +120,14 @@ export default {
 
             this.scene.instance.add(spriteGroup)
             this.scene.instance.add(this.panoramicBox.instance)
-            this.scene.instance.add(helper)
+            // this.scene.instance.add(helper)
 
             this.controls = new OrbitControls(this.camera.instance,this.renderer.domElement)//创建控件对象
 
             this.controls.enabled = true
             this.controls.enableZoom = false
             this.controls.autoRotate = true
-            this.controls.autoRotateSpeed = 0.5
+            this.controls.autoRotateSpeed = 0.2
 
             
             // this.controls.enablePan = false
@@ -323,12 +324,12 @@ export default {
             this.panoramicBox.instance.material.map = this.panoramicBox["texture" + index]
 
             let that = this
-            this.oldPosition = this.camera.instance.position
-            // this.oldPosition = {
-            //     x: this.camera.instance.position.x,
-            //     y: this.camera.instance.position.y,
-            //     z: this.camera.instance.position.z
-            // }
+            // this.oldPosition = this.camera.instance.position
+            this.oldPosition = {
+                x: this.camera.instance.position.x,
+                y: this.camera.instance.position.y,
+                z: this.camera.instance.position.z
+            }
 
             
             // new TWEEN.Tween(this.camera.instance.position)
