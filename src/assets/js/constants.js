@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-11-14 19:08:58
- * @LastEditTime: 2020-11-14 19:52:43
+ * @LastEditTime: 2020-11-16 10:08:49
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \three-panoramic2\src\assets\js\animate-image.js
@@ -64,6 +64,8 @@ import avatarImage from "@/assets/image/index1/色相_饱和度1拷贝.png"
 import backgroundImageindex2 from "@/assets/image/index2/背景.png"
 import titleImageindex2 from "@/assets/image/index2/组7.png"
 import btnImagez5 from "@/assets/image/index2/组5.png"
+
+import bgImage11 from "@/assets/image/index2/lottery/背景.png"
 
 
 
@@ -129,6 +131,7 @@ export const IMAGE_URLS = {
     backgroundImageindex2,
     titleImageindex2,
     btnImagez5,
+    bgImage11,
 
 
     vr,
