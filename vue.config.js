@@ -7,7 +7,7 @@ module.exports = {
             ]
         },
         externals: {
-            "vue":"Vue"
+            // "vue":"Vue"
         },
         output: {
             filename: `js/[name].${Timestamp}.js`,
