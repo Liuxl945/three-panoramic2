@@ -1,13 +1,14 @@
 <!--
  * @Author: your name
  * @Date: 2020-10-30 10:02:15
- * @LastEditTime: 2020-11-14 11:37:03
+ * @LastEditTime: 2020-11-16 09:41:02
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \three-panoramic2\src\App.vue
 -->
 <template>
     <div id="app">
+        <index-0 v-if="indexState === 0 && !loading"></index-0>
         <index-1 v-if="indexState === 1 && !loading"></index-1>
         <index-2 v-if="indexState === 2 && !loading"></index-2>
         <index-3 v-if="indexState === 3 && !loading"></index-3>
@@ -20,6 +21,7 @@
 </template>
 
 <script>
+import Index0 from "@/views/Index0"
 import Index1 from "@/views/Index1"
 import Index2 from "@/views/Index2"
 import Index3 from "@/views/Index3"
@@ -33,6 +35,7 @@ import { IMAGE_URLS } from "@/assets/js/constants"
 
 export default {
     components: {
+        Index0,
         Index1,
         Index2,
         Index3,
@@ -106,7 +109,7 @@ img{
 
 #app{
     height: 100%;
-    overflow: hidden;
+    overflow-y: scroll;
     width: 100% !important;
 }
 
