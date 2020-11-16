@@ -9,7 +9,7 @@
 
 
 <template>
-    <div class="index0">
+    <div class="index0" :style="indexStyle">
       <div class="bg-image">
         <img class="image" :src="bgImage" >
         <div class="go-index">
@@ -56,6 +56,11 @@ export default {
       ruleImage,
       prizeImage,
       showMyLottery: false
+    }
+  },
+  computed: {
+    indexStyle() {
+      return this.showMyLottery ? "overflow-y: hidden;" : ""
     }
   },
   methods: {

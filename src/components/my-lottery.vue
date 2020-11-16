@@ -16,7 +16,7 @@
                     <img class="image" :src="titleImage" alt="你可能抽中的有" >
                 </div>
 
-                <div class="prize">
+                <div class="prize card-prize">
                     <div class="left" @click="slidePrev">
                         <img class="image" :src="arrowImage" alt="箭头" >
                     </div>
@@ -216,7 +216,7 @@ export default {
 .my-lottery{
     width: rem(640);
     border-radius: rem(20);
-    padding: rem(20) 0;
+    padding: rem(40) 0 rem(40) 0;
     height: 85vh;
     background-repeat: no-repeat;
 	background-size: cover;
@@ -228,9 +228,6 @@ export default {
         width: 100%;
     }
 
-    .body{
-        transform: translateY(rem(-20));
-    }
     .my-list{
         // position: absolute;
         // bottom: rem(40);
@@ -255,6 +252,10 @@ export default {
         .prize{
             width: rem(652);
             height: rem(260);
+
+            &.card-prize{
+                height: rem(200);
+            }
             // border: rem(2) solid #46aef7;
             border-radius: rem(14);
             display: flex;

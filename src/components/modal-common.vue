@@ -10,34 +10,37 @@
 
 
 <template>
-    <div class="modal-common modal" v-if="show">
-        <!-- 发展历程 -->
-        <div class="content">
+    <transition name="fade">
+        <div class="modal-common modal" v-if="show">
+            <!-- 发展历程 -->
+            <div class="content">
 
-            <div class="close-image" @click="show = false">
-                <img class="image" :src="closeImage">
-            </div>
-
-            <div class="header">
-                <div class="header-image">
-                    <img class="image" :src="headerImage">
+                <div class="close-image" @click="show = false">
+                    <img class="image" :src="closeImage">
                 </div>
-                
-                <div class="title-image">
-                    <img class="image" :src="titleImage">
+
+                <div class="header">
+                    <div class="header-image">
+                        <img class="image" :src="headerImage">
+                    </div>
+                    
+                    <div class="title-image">
+                        <img class="image" :src="titleImage">
+                    </div>
+                    
                 </div>
-                
-            </div>
 
-            <div class="center" :style="'background-image: url('+ centerImage +')'">
-                <slot></slot>
-            </div>
+                <div class="center" :style="'background-image: url('+ centerImage +')'">
+                    <slot></slot>
+                </div>
 
-            <div class="fotter">
-                <img class="image" :src="fotterImage">
+                <div class="fotter">
+                    <img class="image" :src="fotterImage">
+                </div>
             </div>
         </div>
-    </div>
+    </transition>
+    
 </template>
 
 <script>
@@ -70,6 +73,13 @@ export default {
 @import url("../assets/style/modal.scss");
 @function rem($n){
   @return $n/(200)+rem;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 2s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 
 .modal-common{

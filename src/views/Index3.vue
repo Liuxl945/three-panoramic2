@@ -20,10 +20,7 @@
             <img class="image" :src="backImage" >
         </div>
 
-
-        <div class="lotery" @touchstart.stop @click.stop="lotery" v-if="activeId.length === 5">
-            <img class="image" :src="lotterImage" alt="抽检">
-        </div>
+        <go-lottery ref="gollottery"></go-lottery>
 
         <history-com ref="licheng"></history-com>
         <yewu-com ref="yewu"></yewu-com>
@@ -56,9 +53,10 @@ import keji from "@/assets/image/cube/科技能力.png"
 import rongyu from "@/assets/image/cube/荣誉成绩.png"
 import fangdaImage from "@/assets/image/cube/放大镜2.png"
 import backImage from "@/assets/返回大厅.png"
-import lotterImage from "@/assets/image/index2/选我.png"
+
 import image111 from "@/assets/image/cube/111.png"
 import image222 from "@/assets/image/cube/222.png"
+
 
 import { deepClone } from "@/assets/js/utils"
 
@@ -67,6 +65,7 @@ import yewuCom from "@/components/yewu"
 import gongyiCom from "@/components/gongyi"
 import kejishiliCom from "@/components/kejishili"
 import rongyuCom from "@/components/rongyu"
+import goLottery from "@/components/go-lottery"
 
 
 export default {
@@ -75,11 +74,12 @@ export default {
         yewuCom,
         gongyiCom,
         kejishiliCom,
-        rongyuCom
+        rongyuCom,
+        goLottery
     },
     data() {
         return {
-            lotterImage,
+            lotterShow: true,
             backImage,
             image111,
             image222,
@@ -242,9 +242,7 @@ export default {
 
     },
     methods: {
-        lotery() {
-            this.$store.commit("SET_INDEX", 4)
-        },
+        
         backHome() {
 
             function a() {
@@ -267,6 +265,10 @@ export default {
             }, 150)
 
             this.id = null
+
+            if(this.activeId.length === 5) {
+                this.$refs.gollottery.show = true
+            }
         }
     }
 }
@@ -299,17 +301,6 @@ export default {
     }
 }
 
-.lotery{
-    width: rem(188);
-    height: rem(193);
-    position: fixed;
-    bottom: rem(20);
-    z-index: 11;
-    right: rem(20);
-    .image{
-        width: 100%;
-    }
-}
 
 .number{
     position: absolute;

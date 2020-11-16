@@ -61,10 +61,10 @@ export default {
         return {
             gongxiImage,
             yihanImage,
-            // aiqiyiImage,
-            // huaweiImage,
-            // huafeiImage,
-            // pingbanImage,
+            aiqiyiImage,
+            huaweiImage,
+            huafeiImage,
+            pingbanImage,
             lingquImage,
             zailaiImage,
         }
