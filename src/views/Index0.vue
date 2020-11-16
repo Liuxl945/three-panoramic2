@@ -114,15 +114,16 @@ export default {
 
   .prize,
   .rule{
-    z-index: 10;
+    z-index: 15;
+    margin: rem(20) 0;
     width: rem(207);
     height: rem(65);
     position: absolute;
     right: 0;
-    top: rem(600);
+    top: rem(560);
   }
   .prize{
-    top: rem(680);
+    top: rem(640);
   }
 }
 

@@ -250,7 +250,7 @@ export default {
             }
         }
         .prize{
-            width: rem(652);
+            width: rem(640);
             height: rem(260);
 
             &.card-prize{

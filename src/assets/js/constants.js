@@ -67,7 +67,11 @@ import btnImagez5 from "@/assets/image/index2/组5.png"
 
 import bgImage11 from "@/assets/image/index2/lottery/背景.png"
 
-
+import card1 from "@/assets/image/index2/card/联.png"
+import card2 from "@/assets/image/index2/card/亿.png"
+import card3 from "@/assets/image/index2/card/感.png"
+import card4 from "@/assets/image/index2/card/恩.png"
+import card5 from "@/assets/image/index2/card/您.png"
 
 
 import vr from "@/assets/公益事业.jpg"
@@ -77,6 +81,12 @@ import vr4 from "@/assets/荣誉成绩.png"
 import vr5 from "@/assets/发展历程.png"
 
 export const IMAGE_URLS = {
+    card1,
+    card2,
+    card3,
+    card4,
+    card5,
+
     yewu,
     licheng,
     gongyi,
