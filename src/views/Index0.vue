@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-11-16 09:04:25
- * @LastEditTime: 2020-11-16 09:40:33
+ * @LastEditTime: 2020-11-16 12:05:03
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \three-panoramic2\src\views\Main.vue
@@ -14,6 +14,9 @@
         <img class="image" :src="bgImage" >
         <div class="go-index">
           <div class="go-index1" @click="gotoIndex1"></div>
+          <div class="go-index2" @click="gotoIndex2"></div>
+          <div class="go-index3" @click="gotoIndex3"></div>
+          <div class="go-index4" @click="gotoIndex4"></div>
         </div>
       </div>
       <div class="logo">
@@ -50,6 +53,15 @@ export default {
   methods: {
     gotoIndex1() {
       this.$store.commit("SET_INDEX",1)
+    },
+    gotoIndex2() {
+      alert("敬请期待")
+    },
+    gotoIndex3() {
+      alert("敬请期待")
+    },
+    gotoIndex4() {
+      alert("敬请期待")
     }
   }
 }
@@ -106,10 +118,14 @@ export default {
   z-index: 1;
   padding-top: rem(746);
 
-  .go-index1 {
+  .go-index1,
+  .go-index2,
+  .go-index3,
+  .go-index4 {
     width: 100%;
     height: rem(600);
   }
+  
 }
 
 </style>

@@ -29,7 +29,7 @@
                 <span class="number">5</span>
                 <span>次</span>
             </div>
-            <div class="right">
+            <div class="right" @click="showMyLottery = true">
                 <span>我的奖品 > </span>
             </div>
         </div>
@@ -54,43 +54,11 @@
                 </div>
             </div>
         </div>
-<!-- 
-        <div class="bottom">
-            <div class="tips">
-                <img class="image" :src="titleImage" alt="你可能抽中的有" >
-            </div>
 
-            <div class="prize">
-                <div class="left" @click="slidePrev">
-                    <img class="image" :src="arrowImage" alt="箭头" >
-                </div>
-                <div class="center">
-                    <div class="swiper-container">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <img class="image" :src="aiqiyiImage" alt="爱奇艺" >
-                            </div>
-                            <div class="swiper-slide">
-                                <img class="image" :src="huaweiImage" alt="华为手表" >
-                            </div>
-                            <div class="swiper-slide">
-                                <img class="image" :src="pingbanImage" alt="平板" >
-                            </div>
-                            <div class="swiper-slide">
-                                <img class="image" :src="huafeiImage" alt="话费" >
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="right" @click="slideNext">
-                    <img class="image" :src="arrowImage" alt="箭头" >
-                </div>
-            </div>
-        </div> -->
 
 
         <lottery-result :show="showLotteryResult" :index="index" @again="againLottery"></lottery-result>
+        <my-lottery :show="showMyLottery" @again="againLottery" ></my-lottery>
     </div>
 </template>
 
@@ -111,7 +79,9 @@ import arrowImage from "@/assets/image/index2/lottery/进入(1) 拷贝 6.png"
 
 import titleImagel from "@/assets/image/index2/lottery/亿联邀您来抽奖.png"
 
-import Swiper from "swiper"
+
+
+import myLottery from "./my-lottery"
 
 
 const PRIZE_LIST = 6
@@ -119,7 +89,8 @@ const CIRCLE_ANGLE = 360
 
 export default {
     components: {
-        lotteryResult
+        lotteryResult,
+        myLottery
     },
     data() {
         return {
@@ -135,6 +106,7 @@ export default {
             pingbanImage,
             arrowImage,
             showLotteryResult: false,
+            showMyLottery: false,
             lottery: [
                 {
                     id: 0,
@@ -173,26 +145,8 @@ export default {
     created() {
         this.isRotating = false // 是否正在旋转
     },
-    mounted() {
-        this.initSwiper()
-    },
     methods: {
-        slidePrev() {
-            this.swiper.slidePrev()
-        },
-        slideNext() {
-            this.swiper.slideNext()
-        },
-        initSwiper() {
-            this.swiper = new Swiper(".swiper-container", {
-                direction: 'horizontal', // 垂直切换选项
-                loop: true, // 循环模式选项
-                autoplay: true,
-                slidesPerView : 3,
-                spaceBetween : 5
-            })
-        },
-
+        
         async go() {
             // 防止重复点击
             if(this.isRotating) {
@@ -226,6 +180,7 @@ export default {
 
         againLottery() {
             this.showLotteryResult = false
+            this.showMyLottery= false
         }
     },
     computed: {
@@ -282,8 +237,8 @@ export default {
         }
     }
     .title-image{
-        width: rem(446);
-        height: rem(69);
+        width: rem(478);
+        height: rem(108);
     }
 
     .image{
@@ -296,7 +251,7 @@ export default {
         // transform: translateX(-50%);
         // top: rem(50);
 
-        margin: rem(50) 0;
+        margin: rem(20) 0;
         width: rem(490);
         padding: rem(6);
         border: 1px solid #46aef7;
@@ -333,7 +288,7 @@ export default {
     .content{
         height: rem(628);
         position: relative;
-        margin-top: rem(40);
+        margin-top: rem(20);
         // position: absolute;
         // left: 50%;
         // top: 40%;
@@ -357,7 +312,7 @@ export default {
         flex: 1;
         width: rem(570);
         background: #4584ff;
-        margin-bottom: rem(30);
+        margin-bottom: rem(20);
         padding: rem(15);
         border-radius: rem(10);
         overflow-y: scroll;
@@ -400,64 +355,6 @@ export default {
         }
     }
 
-    .bottom{
-        // position: absolute;
-        // bottom: rem(40);
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        .tips{
-            width: rem(408);
-            height: rem(61);
-            margin-bottom: rem(20);
-        }
-
-        .prize{
-            width: rem(652);
-            height: rem(260);
-            background: #0e0e6a;
-            border: rem(2) solid #46aef7;
-            border-radius: rem(14);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            .center{
-                flex: 1;
-                max-width: rem(552);
-                color: #ffffff;
-                font-size: rem(30);
-                height: rem(209);
-                .swiper-slide{
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                }
-                .image{
-                    height: rem(209);
-                    width: rem(160);
-                }
-            }
-            .left,
-            .right{
-                width: rem(50);
-                padding: rem(20) 0;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                .image{
-                    width: rem(20);
-                }
-            }
-            .right{
-                .image{
-                    transform: rotate(180deg);
-                }
-            }
-        }
-    }
 
 }
 </style>
