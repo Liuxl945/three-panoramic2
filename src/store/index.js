@@ -12,11 +12,7 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 const state = {
-<<<<<<< HEAD
-    indexState: 3, //哪个场景
-=======
-    indexState: 0, //哪个场景
->>>>>>> 62fc59fcc0144b32b7744fd716316d7364e8798d
+    indexState: 0
 }
 
 const mutations = { 

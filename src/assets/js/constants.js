@@ -133,12 +133,6 @@ export const IMAGE_URLS = {
     btnImagez5,
     bgImage11,
 
-
-    vr,
-    vr2,
-    vr3,
-    vr4,
-    vr5,
 }
 
 export const SPRITE_IAMGE_URLS= {
