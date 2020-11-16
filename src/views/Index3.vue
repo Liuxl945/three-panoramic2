@@ -11,8 +11,13 @@
 <template>
     <div class="index3">
         <div id="viewer"></div>
+
+        <div class="number">
+            <img class="image" :src="image111" v-for="item in activeId.length">
+            <img class="image" :src="image222" v-for="item in (5- activeId.length)">
+        </div>
         <div class="back" @click="backHome" v-if="id">
-            <img class="image" :src="backImage" alt="箭头" >
+            <img class="image" :src="backImage" >
         </div>
 
 
@@ -52,6 +57,8 @@ import rongyu from "@/assets/image/cube/荣誉成绩.png"
 import fangdaImage from "@/assets/image/cube/放大镜2.png"
 import backImage from "@/assets/返回大厅.png"
 import lotterImage from "@/assets/image/index2/选我.png"
+import image111 from "@/assets/image/cube/111.png"
+import image222 from "@/assets/image/cube/222.png"
 
 import { deepClone } from "@/assets/js/utils"
 
@@ -74,6 +81,8 @@ export default {
         return {
             lotterImage,
             backImage,
+            image111,
+            image222,
             id: null,
             activeId: []
         }
@@ -89,7 +98,7 @@ export default {
             defaultLat: 0, //上下 -π/2 and π/2
 
 
-            defaultZoomLvl: 20, //Initial zoom level, between 0 (for maxFov) and 100 (for minfov)
+            defaultZoomLvl: 2, //Initial zoom level, between 0 (for maxFov) and 100 (for minfov)
             plugins: [
                 [ MarkersPlugin, {
                     markers: (() => {
@@ -278,8 +287,9 @@ export default {
 
 .back{
     position: fixed;
-    left: 0;
-    top: 0;
+    left: 50%;
+    bottom: rem(40);
+    transform: translateX(-50%);
     z-index: 99;
     height: rem(129);
     width: rem(406);
@@ -300,12 +310,27 @@ export default {
         width: 100%;
     }
 }
+
+.number{
+    position: absolute;
+    left: rem(30);
+    top: rem(30);
+    z-index: 10;
+
+    .image {
+        width: rem(430/5);
+        height: rem(472/5);
+    }
+}
 </style>
 
 <style lang="scss">
 #viewer{
     .psv-navbar{
         display: none;
+    }
+    .psv-loader-container{
+        display: none !important;
     }
 }
 </style>

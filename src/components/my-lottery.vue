@@ -10,7 +10,7 @@
 
 <template>
     <div class="modal-common modal " v-if="show">
-        <div class="my-lottery">
+        <div class="my-lottery"  :style="'background-image: url('+ bgImage +')'">
             <div class="my-list top">
                 <div class="title-tips">
                     <img class="image" :src="titleImage" alt="你可能抽中的有" >
@@ -115,6 +115,7 @@ import huafeiImage from "@/assets/image/index2/lottery/话费.png"
 import pingbanImage from "@/assets/image/index2/lottery/平板.png"
 import arrowImage from "@/assets/image/index2/lottery/进入(1) 拷贝 6.png"
 import closeImage from "@/assets/image/index2/history/关闭.png"
+import bgImage from "@/assets/image/index2/lottery/背景.png"
 
 
 
@@ -148,6 +149,7 @@ export default {
             pingbanImage,
             arrowImage,
             closeImage,
+            bgImage,
 
             card1,
             card2,
@@ -212,14 +214,23 @@ export default {
 }
 
 .my-lottery{
-    width: 100%;
-    height: 100%;
+    width: rem(640);
+    border-radius: rem(20);
+    padding: rem(20) 0;
+    height: 85vh;
+    background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+    background-position: center bottom;
+
     overflow-y: scroll;
     .image{
         width: 100%;
     }
 
-    
+    .body{
+        transform: translateY(rem(-20));
+    }
     .my-list{
         // position: absolute;
         // bottom: rem(40);
@@ -244,8 +255,7 @@ export default {
         .prize{
             width: rem(652);
             height: rem(260);
-            background: #0e0e6a;
-            border: rem(2) solid #46aef7;
+            // border: rem(2) solid #46aef7;
             border-radius: rem(14);
             display: flex;
             align-items: center;
@@ -303,9 +313,9 @@ export default {
     .bottom{
         .list{
             height: rem(64);
-            width: rem(652);
+            width: rem(580);
             border: 1px solid #46aef7;
-            background: #0e0e6a;
+            background: rgba($color: #000000, $alpha: 0.2);
             margin-bottom: rem(20);
             border-radius: rem(10);
             color: #ffffff;

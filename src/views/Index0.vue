@@ -23,13 +23,16 @@
         <img class="image" :src="logoImage" >
       </div>
 
-      <div class="prize">
+      <div class="prize" @click="showMyLottery = true">
         <img class="image" :src="prizeImage" >
       </div>
 
       <div class="rule">
         <img class="image" :src="ruleImage" >
       </div>
+
+
+      <my-lottery :show="showMyLottery" @again="againLottery"></my-lottery>
     </div>
 </template>
 
@@ -40,7 +43,11 @@ import logoImage from "@/assets/image/图层528.png"
 import ruleImage from "@/assets/image/游戏规则.png"
 import prizeImage from "@/assets/image/我的奖品.png"
 
+import myLottery from "@/components/my-lottery"
 export default {
+  components: {
+    myLottery
+  },
   name: "index0",
   data() {
     return {
@@ -48,9 +55,13 @@ export default {
       logoImage,
       ruleImage,
       prizeImage,
+      showMyLottery: false
     }
   },
   methods: {
+    againLottery() {
+      this.showMyLottery = false
+    },
     gotoIndex1() {
       this.$store.commit("SET_INDEX",1)
     },
