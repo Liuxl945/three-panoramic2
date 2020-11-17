@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-11-17 18:27:50
- * @LastEditTime: 2020-11-17 18:55:34
+ * @LastEditTime: 2020-11-17 19:36:22
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \three-panoramic2\src\components\rules2.vue
@@ -11,6 +11,9 @@
     <transition name="fade">
         <div class="modal-common modal" v-if="show">
             <div class="rules2">
+
+                
+
                 <img class="image" :src="bgImage">
 
                 <div class="content" v-if="index === 1">
@@ -65,6 +68,10 @@
                         <p>7、本次活动的最终解释权归亿联银行所有。</p>
                     </div>
                 </div>
+
+                <div class="close-image" @click="show = false">
+                    <img class="image" :src="closeImage">
+                </div>
             </div>
         </div>
     </transition>
@@ -78,6 +85,7 @@ import titleImage1 from "@/assets/image/index2/·活动说明·.png"
 import iconImage1 from "@/assets/image/index2/时间(1).png"
 import iconImage2 from "@/assets/image/index2/奖品.png"
 import iconImage3 from "@/assets/image/index2/规则文档.png"
+import closeImage from "@/assets/image/index2/history/关闭.png"
 
 export default {
     props: {
@@ -95,6 +103,7 @@ export default {
             iconImage1,
             iconImage2,
             iconImage3,
+            closeImage
         }
     }
 }
@@ -108,14 +117,24 @@ export default {
 
 .rules2{
     width: rem(630);
-    height: 90vh;
+    height: rem(1200);
     overflow: hidden;
     border-radius: rem(20);
     position: relative;
+
+    .close-image{
+        z-index: 1000;
+        position: absolute;
+        right: rem(23);
+        top: rem(23);
+        width: rem(46);
+        height: rem(46);
+    }
+    
     .content{
         position: absolute;
         width: rem(630);
-        height: 90vh;
+        height: rem(1200);
         overflow-y: scroll;
         left: 0;
         top: 0;

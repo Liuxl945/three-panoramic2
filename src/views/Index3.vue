@@ -2,7 +2,7 @@
 <!--
  * @Author: 刘学良
  * @Date: 2020-10-30 10:02:15
- * @LastEditTime: 2020-11-17 18:18:45
+ * @LastEditTime: 2020-11-17 19:29:17
  * @LastEditors: Please set LastEditors
  * @Description: 场景动画
  * @FilePath: \three-panoramic2\src\App.vue
@@ -107,6 +107,7 @@ export default {
             defaultLat: 0, //上下 -π/2 and π/2
             // moveSpeed: 0.01,
             autorotateSpeed: "0.5rpm",
+            autorotateDelay: 2000,
 
             defaultZoomLvl: 2, //Initial zoom level, between 0 (for maxFov) and 100 (for minfov)
             plugins: [

@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-11-14 13:04:56
- * @LastEditTime: 2020-11-17 18:19:39
+ * @LastEditTime: 2020-11-17 19:53:53
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \three-panoramic2\src\components\yewu.vue
@@ -14,22 +14,22 @@
             <div class="swiper-container">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
-                        <img class="image" :src="yihedaiImage" >
+                        <img class="image image1" :src="yihedaiImage" >
                     </div>
                     <div class="swiper-slide">
-                        <img class="image" :src="manyicunImage">
+                        <img class="image image2" :src="manyicunImage">
                     </div>
                     <div class="swiper-slide">
-                        <img class="image" :src="yidaiImage">
+                        <img class="image image3":src="yidaiImage">
                     </div>
                     <div class="swiper-slide">
-                        <img class="image" :src="yinondaiImage">
+                        <img class="image image4" :src="yinondaiImage">
                     </div>
                     <div class="swiper-slide">
-                        <img class="image" :src="qudaoImage">
+                        <img class="image image5":src="qudaoImage">
                     </div>
                     <div class="swiper-slide">
-                        <img class="image" :src="dituImage">
+                        <img class="image image6" :src="dituImage">
                     </div>
                 </div>
             </div>
@@ -104,13 +104,34 @@ export default {
     max-height: 70vh;
     overflow-y: scroll;
     padding: 0 rem(20);
+
+    
+    .image{
+        width: 100%;
+    }
+    
     .swiper-slide{
         
         display: flex;
         justify-content: center;
-    }
-    .image{
-        width: 100%;
+
+        .image{
+            width: rem(594);
+        }
+
+        .image1,
+        .image2,
+        .image3,
+        .image4{
+            height: rem(594/534 * 955);
+        }
+
+        .image5{
+            height: rem(594/523 * 922);
+        }
+        .image6{
+            height: rem(594/614 * 712);
+        }
     }
 
     .left-arrow,
