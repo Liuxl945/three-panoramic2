@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-11-14 12:56:31
- * @LastEditTime: 2020-11-14 13:00:18
+ * @LastEditTime: 2020-11-17 09:26:25
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \three-panoramic2\src\components\modal-common.vue
@@ -15,7 +15,7 @@
             <!-- 发展历程 -->
             <div class="content">
 
-                <div class="close-image" @click="show = false">
+                <div class="close-image" @click="again">
                     <img class="image" :src="closeImage">
                 </div>
 
@@ -64,6 +64,12 @@ export default {
             centerImage,
             closeImage,
             show: false
+        }
+    },
+    methods: {
+        again() {
+            this.show= false
+            this.$emit("again")
         }
     }
 }

@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2020-10-30 10:02:15
+ * @LastEditTime: 2020-11-17 08:43:46
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \three-panoramic2\vue.config.js
+ */
 
 const Timestamp = new Date().getTime()
 module.exports = {

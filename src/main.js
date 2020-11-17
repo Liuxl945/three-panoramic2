@@ -1,8 +1,8 @@
 /*
  * @Author: your name
  * @Date: 2020-10-30 10:02:15
- * @LastEditTime: 2020-11-14 13:29:14
- * @LastEditors: your name
+ * @LastEditTime: 2020-11-17 08:46:00
+ * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \three-panoramic2\src\main.js
  */
@@ -18,9 +18,9 @@ Vue.config.productionTip = false
 
 import "swiper/swiper-bundle.css"
 
-// import vConsole from "vconsole"
+import vConsole from "vconsole"
 
-// new vConsole()
+new vConsole()
 
 new Vue({
         // router,
