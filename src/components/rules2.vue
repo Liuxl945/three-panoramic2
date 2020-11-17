@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-11-17 18:27:50
- * @LastEditTime: 2020-11-17 19:36:22
+ * @LastEditTime: 2020-11-17 19:58:56
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \three-panoramic2\src\components\rules2.vue
@@ -117,7 +117,7 @@ export default {
 
 .rules2{
     width: rem(630);
-    height: rem(1200);
+    height: rem(1050);
     overflow: hidden;
     border-radius: rem(20);
     position: relative;
@@ -134,7 +134,7 @@ export default {
     .content{
         position: absolute;
         width: rem(630);
-        height: rem(1200);
+        height: rem(1050);
         overflow-y: scroll;
         left: 0;
         top: 0;
