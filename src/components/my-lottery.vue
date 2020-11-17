@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-11-16 10:49:50
- * @LastEditTime: 2020-11-16 11:45:48
+ * @LastEditTime: 2020-11-17 09:55:49
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \three-panoramic2\src\components\my-lottery.vue
@@ -9,6 +9,7 @@
 
 
 <template>
+<transition name="fade">
     <div class="modal-common modal " v-if="show">
         <div class="my-lottery"  :style="'background-image: url('+ bgImage +')'">
             <div class="my-list top">
@@ -100,6 +101,7 @@
         
         
     </div>
+</transition>
 </template>
 
 <script>

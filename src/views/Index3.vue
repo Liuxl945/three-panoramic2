@@ -2,7 +2,7 @@
 <!--
  * @Author: 刘学良
  * @Date: 2020-10-30 10:02:15
- * @LastEditTime: 2020-11-14 19:42:39
+ * @LastEditTime: 2020-11-17 11:51:13
  * @LastEditors: Please set LastEditors
  * @Description: 场景动画
  * @FilePath: \three-panoramic2\src\App.vue
@@ -27,6 +27,8 @@
         <gongyi-com ref="gongyi"></gongyi-com>
         <kejishili-com ref="keji"></kejishili-com>
         <rongyu-com ref="rongyu"></rongyu-com>
+        <video-com ref="video"></video-com>
+        <card ref="card"></card>
     </div>
     
 </template>
@@ -52,6 +54,7 @@ import gongyi from "@/assets/image/cube/公益事业.png"
 import keji from "@/assets/image/cube/科技能力.png"
 import rongyu from "@/assets/image/cube/荣誉成绩.png"
 import fangdaImage from "@/assets/image/cube/放大镜2.png"
+import vidoeImage from "@/assets/image/cube/视频.png"
 import backImage from "@/assets/返回大厅.png"
 
 import image111 from "@/assets/image/cube/111.png"
@@ -66,6 +69,8 @@ import gongyiCom from "@/components/gongyi"
 import kejishiliCom from "@/components/kejishili"
 import rongyuCom from "@/components/rongyu"
 import goLottery from "@/components/go-lottery"
+import videoCom from "@/components/video"
+import card from "@/components/card"
 
 
 export default {
@@ -75,7 +80,9 @@ export default {
         gongyiCom,
         kejishiliCom,
         rongyuCom,
-        goLottery
+        videoCom,
+        goLottery,
+        card
     },
     data() {
         return {
@@ -169,7 +176,7 @@ export default {
                 
                 if(this.id === "yewu") {
                     this.$refs.yewu.show()
-
+                    
                 }else if(this.id === "gongyi") {
                     this.$refs.gongyi.show()
 
@@ -183,9 +190,22 @@ export default {
                     this.$refs.rongyu.show()
                 }
 
+                // 弹出卡片
+
+                let number = Math.ceil(Math.random() * 2)
+                if(number) {
+                    this.$refs.card.show()
+                }
+                
                 return
 
-            }else if(marker.id === "yewu"){
+            } else if(marker.id === "vidoeImage") {
+                
+                this.$refs.video.show()
+
+                return
+            }
+            else if(marker.id === "yewu"){
 
                 this.id = "yewu"
                 viewer.setPanorama(imageyewu)
@@ -205,7 +225,6 @@ export default {
             }else if(marker.id === "rongyu") {
                 viewer.setPanorama(imagerongyu)
                 this.id = "rongyu"
-
             }
             
             if(!this.activeId.includes(this.id)) {
@@ -218,14 +237,57 @@ export default {
             markersPlugin.removeMarker("rongyu")
             markersPlugin.removeMarker("gongyi")
 
-            markersPlugin.addMarker({
-                id: 'fangdaImage',
-                longitude: Math.PI * 2 , // 0 and 2π
-                latitude:  0.25,
-                width: 120,
-                height: 120,
-                image: fangdaImage,
-            })
+            if(this.id === "yewu") {
+                markersPlugin.addMarker({
+                    id: 'vidoeImage',
+                    longitude: Math.PI * 2 - 0.34, // 0 and 2π
+                    latitude:  -0.02,
+                    width: 120,
+                    height: 120,
+                    image: vidoeImage,
+                })
+
+                markersPlugin.addMarker({
+                    id: 'fangdaImage',
+                    longitude: Math.PI * 2 + 0.14 , // 0 and 2π
+                    latitude:  0.15,
+                    width: 120,
+                    height: 120,
+                    image: fangdaImage,
+                })
+
+            }else{
+                let longitude = Math.PI * 2 + 0.1
+                let latitude = 0.15
+
+                if(this.id === "gongyi") {
+                    longitude -= 0.13
+                }
+
+                if(this.id === "keji") {
+                    longitude -= 0.13
+                }
+
+                if(this.id === "rongyu") {
+                    longitude -= 0.13
+                }
+
+                if(this.id === "licheng") {
+                    longitude -= 0.13
+                    latitude -= 0.13
+                }
+
+                markersPlugin.addMarker({
+                    id: 'fangdaImage',
+                    longitude: longitude, // 0 and 2π
+                    latitude:  latitude,
+                    width: 120,
+                    height: 120,
+                    image: fangdaImage,
+                })
+            }   
+
+            
 
             let { latitude, longitude} = viewer.getPosition()
             this.oldPostion = {
@@ -234,7 +296,7 @@ export default {
             }
             
             viewer.rotate({
-                latitude: Math.PI/ 20,
+                latitude: 0,
                 longitude: 0 
             })
 
@@ -258,13 +320,19 @@ export default {
                     this.markersPlugin.addMarker(item)
                 })
                 this.markersPlugin.removeMarker("fangdaImage")
+
+                if(this.id === "yewu") {
+                    this.markersPlugin.removeMarker("vidoeImage")
+                }
+
+                this.id = null
             })
 
             setTimeout(() => {
                 this.viewer.rotate(this.oldPostion)
             }, 150)
 
-            this.id = null
+            
 
             if(this.activeId.length === 5) {
                 this.$refs.gollottery.show = true

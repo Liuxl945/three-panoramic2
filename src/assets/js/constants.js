@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-11-14 19:08:58
- * @LastEditTime: 2020-11-16 10:08:49
+ * @LastEditTime: 2020-11-17 10:41:48
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \three-panoramic2\src\assets\js\animate-image.js
@@ -74,11 +74,11 @@ import card4 from "@/assets/image/index2/card/恩.png"
 import card5 from "@/assets/image/index2/card/您.png"
 
 
-import vr from "@/assets/公益事业.jpg"
-import vr2 from "@/assets/科技实力.png"
-import vr3 from "@/assets/产品业务.png"
-import vr4 from "@/assets/荣誉成绩.png"
-import vr5 from "@/assets/发展历程.png"
+// import vr from "@/assets/公益事业.jpg"
+// import vr2 from "@/assets/科技实力.png"
+// import vr3 from "@/assets/产品业务.png"
+// import vr4 from "@/assets/荣誉成绩.png"
+// import vr5 from "@/assets/发展历程.png"
 
 export const IMAGE_URLS = {
     card1,
@@ -151,11 +151,6 @@ export const SPRITE_IAMGE_URLS= {
     gongyi,
     keji,
     rongyu,
-    vr,
-    vr2,
-    vr3,
-    vr4,
-    vr5,
 }
 
 export const SPRITE_CHILDREN = [

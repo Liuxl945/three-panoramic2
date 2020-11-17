@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-11-16 09:04:25
- * @LastEditTime: 2020-11-17 09:27:40
+ * @LastEditTime: 2020-11-17 09:30:58
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \three-panoramic2\src\views\Main.vue
@@ -76,14 +76,12 @@ export default {
   },
   methods: {
     show(e) {
-      console.log(e.target.className)
 
       if( e.target.className === "image rule-image") {
         this.$refs.showRule.show()
-
-        this.showrules = true
+        this.showrules = true // 为了indexStyle改变值
         
-      }else if( e.target.className === "image rule-image") {
+      }else if( e.target.className === "image prize-image") {
         this.showMyLottery = true
       }
     },

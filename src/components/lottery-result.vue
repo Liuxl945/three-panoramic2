@@ -1,13 +1,14 @@
 <!--
  * @Author: your name
  * @Date: 2020-11-14 10:39:44
- * @LastEditTime: 2020-11-14 11:18:29
+ * @LastEditTime: 2020-11-17 09:56:39
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \three-panoramic2\src\components\lottery-result.vue
 -->
 
 <template>
+<transition name="fade">
     <div class="modal lottery-result" v-if="show">
         <div class="bg-image">
 
@@ -31,6 +32,7 @@
             </div>
         </div>
     </div>
+</transition>
 </template>
 
 <script>

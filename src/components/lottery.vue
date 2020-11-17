@@ -1,6 +1,7 @@
 
 
 <template>
+<transition name="fade">
     <div class="lottery" :style="'background-image: url('+ bgImage +')'">
         <!-- 领取卡片 -->
 
@@ -60,6 +61,7 @@
         <lottery-result :show="showLotteryResult" :index="index" @again="againLottery"></lottery-result>
         <my-lottery :show="showMyLottery" @again="againLottery" ></my-lottery>
     </div>
+</transition>
 </template>
 
 <script>

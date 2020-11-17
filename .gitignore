@@ -15,6 +15,7 @@ pnpm-debug.log*
 
 # Editor directories and files
 .idea
+*.mp4
 .vscode
 *.suo
 *.ntvs*

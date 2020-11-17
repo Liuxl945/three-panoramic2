@@ -1,4 +1,13 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-11-17 08:37:36
+ * @LastEditTime: 2020-11-17 09:56:57
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: \three-panoramic2\src\components\go-lottery.vue
+-->
 <template>
+<transition name="fade">
     <div class="modal-common modal " v-if="show">
         <div class="lotery" @touchstart.stop @click.stop="lotery">
             
@@ -8,6 +17,7 @@
             <img class="image lotterImage4" :src="lotterImage4" >
         </div>
     </div>
+</transition>
 </template>
 
 
