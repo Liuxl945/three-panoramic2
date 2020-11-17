@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-11-14 09:36:55
- * @LastEditTime: 2020-11-14 14:34:48
+ * @LastEditTime: 2020-11-17 18:20:38
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \three-panoramic2\src\components\history.vue
@@ -37,6 +37,9 @@
                 </div>
             </div>
 
+            <img class="left-arrow image" :src="leftImage" @click="slidePrev">
+            <img class="right-arrow image" :src="leftImage" @click="slideNext">
+
         </div>
     </modal-common>
 </template>
@@ -50,8 +53,10 @@ import circleImage from "@/assets/image/index2/history/椭圆4.png"
 
 import modalCommon from "./modal-common"
 import Swiper from "swiper"
+import arrowMixin from "./arrow-mixin"
 
 export default {
+    mixins: [arrowMixin],
     components: {
         modalCommon
     },
@@ -192,9 +197,27 @@ export default {
     max-height: 75vh;
     overflow-y: scroll;
     padding: rem(20) 0;
+
+    .right-arrow{
+        right: 0;
+        transform: rotate(180deg);
+    }
+
     .image{
         width: 100%;
     }
+
+    
+    .left-arrow,
+    .right-arrow{
+        position: absolute;
+        top: 50%;
+        height: auto;
+        // left: rem(-100);
+        width: rem(100);
+        z-index: 10;
+    }
+    
     .swiper-slide{
         display: flex;
         flex-direction: column;

@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-10-30 10:02:15
- * @LastEditTime: 2020-11-16 12:03:26
+ * @LastEditTime: 2020-11-17 19:05:01
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \three-panoramic2\src\store\index.js

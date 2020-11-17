@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-11-16 09:04:25
- * @LastEditTime: 2020-11-17 09:30:58
+ * @LastEditTime: 2020-11-17 18:53:09
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \three-panoramic2\src\views\Main.vue
@@ -52,7 +52,7 @@ import ruleImage from "@/assets/image/游戏规则.png"
 import prizeImage from "@/assets/image/我的奖品.png"
 
 import myLottery from "@/components/my-lottery"
-import rules from "@/components/rules"
+import rules from "@/components/rules2"
 export default {
   components: {
     myLottery,
@@ -78,7 +78,7 @@ export default {
     show(e) {
 
       if( e.target.className === "image rule-image") {
-        this.$refs.showRule.show()
+        this.$refs.showRule.show = true
         this.showrules = true // 为了indexStyle改变值
         
       }else if( e.target.className === "image prize-image") {

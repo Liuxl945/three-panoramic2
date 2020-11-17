@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-11-14 13:36:26
- * @LastEditTime: 2020-11-14 13:50:51
+ * @LastEditTime: 2020-11-17 18:20:17
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \three-panoramic2\src\components\rongyu.vue
@@ -42,6 +42,9 @@
 
                 </div>
             </div>
+
+            <img class="left-arrow image" :src="leftImage" @click="slidePrev">
+            <img class="right-arrow image" :src="leftImage" @click="slideNext">
         </div>
     </modal-common>
 </template>
@@ -54,11 +57,14 @@ import titleImage2 from "@/assets/image/index2/rongyu/标题2.png"
 import circleImage from "@/assets/image/index2/kejishili/椭圆5.png"
 import list2Image from "@/assets/image/index2/rongyu/组15.png"
 
+
 import modalCommon from "./modal-common2"
 
 import Swiper from "swiper" 
+import arrowMixin from "./arrow-mixin"
 
 export default {
+    mixins: [arrowMixin],
     components: {
         modalCommon
     },
@@ -139,6 +145,21 @@ export default {
     .image{
         width: 100%;
     }
+
+    .left-arrow,
+    .right-arrow{
+        position: absolute;
+        top: 50%;
+        height: auto;
+        // left: rem(-100);
+        width: rem(100);
+        z-index: 10;
+    }
+    .right-arrow{
+        right: 0;
+        transform: rotate(180deg);
+    }
+    
     .swiper-slide{
         display: flex;
         flex-direction: column;

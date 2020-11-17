@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-11-14 09:36:55
- * @LastEditTime: 2020-11-17 10:23:36
+ * @LastEditTime: 2020-11-17 19:05:58
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \three-panoramic2\src\components\card.vue
@@ -15,7 +15,7 @@
                 <!-- 领取卡片 -->
 
                 <div class="card-iamge">
-                    <img class="image" :src="cardImage" >
+                    <img class="image" :src="cardImage || cardImage0" >
                 </div>
 
                 <div class="gonxi-image">
@@ -26,6 +26,8 @@
                     <img class="image" :src="lingquImage" >
                 </div>
             </div>
+
+            <save-ok ref="saveok" @comfirm="comfirm"></save-ok>
         </modal-common>
     </transition>
 </template>
@@ -45,10 +47,12 @@ import gonxiImage from "@/assets/image/index2/card/恭喜您获得.png"
 import lingquImage from "@/assets/image/index2/card/领取卡片.png"
 
 import modalCommon from "./modal-common"
+import SaveOk from "@/components/save-ok.vue"
 
 export default {
     components: {
-        modalCommon
+        modalCommon,
+        SaveOk
     },
     data() {
         return {
@@ -73,9 +77,13 @@ export default {
 
             this.getCard()
         },
-        lingqu() {
-            alert("领取成功")
+        comfirm() {
             this.$refs.modal.show = false
+        },
+        lingqu() {
+            this.$refs.saveok.show = true
+
+            // this.$refs.modal.show = false
         },
         getCard() {
             this.index = Math.ceil(Math.random()* 6)

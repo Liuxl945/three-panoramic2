@@ -2,7 +2,7 @@
 <!--
  * @Author: 刘学良
  * @Date: 2020-10-30 10:02:15
- * @LastEditTime: 2020-11-17 11:51:13
+ * @LastEditTime: 2020-11-17 18:18:45
  * @LastEditors: Please set LastEditors
  * @Description: 场景动画
  * @FilePath: \three-panoramic2\src\App.vue
@@ -29,6 +29,7 @@
         <rongyu-com ref="rongyu"></rongyu-com>
         <video-com ref="video"></video-com>
         <card ref="card"></card>
+        
     </div>
     
 </template>
@@ -73,6 +74,7 @@ import videoCom from "@/components/video"
 import card from "@/components/card"
 
 
+
 export default {
     components: {
         historyCom,
@@ -103,7 +105,8 @@ export default {
             navbar: [],
             defaultLong: Math.PI/2, //左右  0 and 2π
             defaultLat: 0, //上下 -π/2 and π/2
-
+            // moveSpeed: 0.01,
+            autorotateSpeed: "0.5rpm",
 
             defaultZoomLvl: 2, //Initial zoom level, between 0 (for maxFov) and 100 (for minfov)
             plugins: [
@@ -162,6 +165,13 @@ export default {
                 }], 
             ],
         })
+        
+
+        setTimeout(() => {
+            viewer.startAutorotate()
+        },2000)
+
+        
 
         const markersPlugin = viewer.getPlugin(MarkersPlugin)
 
@@ -304,7 +314,10 @@ export default {
 
     },
     methods: {
-        
+        mouseleave() {
+            console.log(111)
+            this.viewer.startAutorotate()
+        },
         backHome() {
 
             function a() {

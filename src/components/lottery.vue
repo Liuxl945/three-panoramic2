@@ -5,7 +5,7 @@
     <div class="lottery" :style="'background-image: url('+ bgImage +')'">
         <!-- 领取卡片 -->
 
-        <div class="shuomin">
+        <div class="shuomin" @click="shuomin">
             <div class="shuomin-btn">
                 活动说明
             </div>
@@ -26,7 +26,7 @@
 
         <div class="header-top">
             <div class="left">
-                <span>可选次数</span>
+                <span>可抽奖次数:</span>
                 <span class="number">5</span>
                 <span>次</span>
             </div>
@@ -60,6 +60,9 @@
 
         <lottery-result :show="showLotteryResult" :index="index" @again="againLottery"></lottery-result>
         <my-lottery :show="showMyLottery" @again="againLottery" ></my-lottery>
+
+        <rules ref="showRule" @again="againLottery" :index="2"></rules>
+
     </div>
 </transition>
 </template>
@@ -67,6 +70,7 @@
 <script>
 
 import lotteryResult from "./lottery-result"
+import rules from "@/components/rules2"
 
 import bgImage from "@/assets/image/index2/lottery/背景.png"
 import jiluImage from "@/assets/image/index2/lottery/椭圆79拷贝9.png"
@@ -92,7 +96,8 @@ const CIRCLE_ANGLE = 360
 export default {
     components: {
         lotteryResult,
-        myLottery
+        myLottery,
+        rules
     },
     data() {
         return {
@@ -148,7 +153,9 @@ export default {
         this.isRotating = false // 是否正在旋转
     },
     methods: {
-        
+        shuomin() {
+            this.$refs.showRule.show = true
+        },
         async go() {
             // 防止重复点击
             if(this.isRotating) {
